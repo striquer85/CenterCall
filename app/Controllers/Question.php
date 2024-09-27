@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 class Question extends BaseController
 {
-    public function index(): string
+    public function gestionquestion($idCampagne): string
     {
-        return view('accueil');
+        return view('_question_gestion');
     }
 }
