@@ -53,3 +53,5 @@ $routes->post('update', 'Client::modif_client_update', ['as' => 'modif_client'])
 $routes->get('sup_client_(:num)', 'Client::supCL_update/$1', ['as' => 'sup_client']);
 // soit :
 $routes->post('sup_client', 'Client::supclient_update', ['as' => 'sup_client']);
+
+
