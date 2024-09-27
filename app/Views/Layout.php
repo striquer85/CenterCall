@@ -12,5 +12,7 @@
 </head>
 
 <body>
-<?= $this->renderSection('content') ?>
 
+    <?= $this->renderSection('content') ?>
+
+</body>
