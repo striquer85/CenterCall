@@ -12,7 +12,17 @@ class Client extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'raison_sociale',
+        'nom',
+        'PREnom',
+        'email',
+        'telephone',
+        'adresse',
+        'code_postal',
+        'ville'
+
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

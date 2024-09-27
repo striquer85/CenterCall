@@ -6,52 +6,38 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Campagne::index', ['as' => 'accueil']); 
-// version 1 : redirection vers gestion_clients
-//$routes->post('/', 'Home::connexions_update', ['as' => 'connexions']);
 
+$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
+$routes->get('gestion-campagnes/(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
 
-// classe controleur Campagne
-$routes->get('gestion_campagnes', 'Campagne::dashboard_client', ['as' => 'gestion_campagnes']);
-$routes->get('gestion_campagnes_(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
+// CRUD Campagne
+$routes->get('creation-campagne', 'Campagne::ajout', ['as' => 'creation_campagne_get']);
+$routes->post('creation-campagne', 'campagne::create', ['as' => 'creation_campagne_post']);
 
+$routes->get('modif-campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_campagne_get']);
+$routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_post']);
 
-$routes->get('creation_campagne', 'Campagne::CreationC', ['as' => 'creation_campagne']);
-$routes->post('update', 'campagne::CreationC_update', ['as' => 'creation_campagne_update']);
+$routes->post('suppr-campagne', 'Campagne::delete', ['as' => 'suppr_campagne']);
 
+// CRUD Question (attention, penser au paramètre GET CampagneId)
+$routes->get('creation-question/(:num)', 'Campagne::ajout/$1', ['as' => 'creation_question_get']);
+$routes->post('creation-question', 'Campagne::create', ['as' => 'creation_question_post']);
 
-$routes->get('modif_campagne_(:num)', 'Campagne::modi_campagne/$1', ['as' => 'modif_campagne']);
-$routes->post('update_campagne', 'Campagne::modifCampagne_update', ['as' => 'modif_campagne_update']);
+$routes->get('modif-question/(:num)/(:num)', 'Campagne::modif/$1/$2', ['as' => 'modif_question_get']);
+$routes->post('modif-question', 'Campagne::update', ['as' => 'modif_question_post']);
 
-$routes->post('sup_campagne', 'Client::sup_campagne_update', ['as' => 'sup_campagne']);
-
-// 2 routes pour delete campagnes
-
-// classe controleur Questionnaire ?? pas sur... ptet plutôt Campagne
-$routes->get('creation_questionnaire', 'Campagne::CréationQuestionnaire', ['as' => 'creation_questionnaire']);
-$routes->post('update_questionaire', 'Campagne::CréationQ_update', ['as' => 'questionnaire_update']);
-
-$routes->get('modif_questionnaire_(:num)', 'Campagne::modif_questionnaire/$1', ['as' => 'modif_questionnaire']);
-$routes->post('update_questionaire', 'Campagne::modif_questionnaire_update', ['as' => 'modif_questionnaire_update']);
-
-$routes->post('sup_questionaire', 'Client::sup_questionaire_update', ['as' => 'sup_questionaire']);
-
-
+$routes->post('suppr-question', 'Campagne::delete', ['as' => 'suppr_question']);
+ 
 
 $routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 
-// classe controleur Client
-$routes->get('gestion_clients', 'Clients::gestion_clients', ['as' => 'gestion_admin']);
+// CRUD Client
+$routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion-admin']);
 
+$routes->get('creation-client', 'Client::ajout', ['as' => 'creation-client_get']);
+$routes->post('creation-client', 'Client::create', ['as' => 'creation-client_post']);
 
-$routes->get('creation_client ', 'Clients::creation_client', ['as' => 'Création_client']);
-$routes->post('update', 'Client::creation_client_update', ['as' => 'Création_client']);
+$routes->get('modif-client/(:num)', 'Client::modif/$1', ['as' => 'modif_client_get']);
+$routes->post('modif-client', 'Client::update', ['as' => 'modif_client_post']);
 
-$routes->get('modif_client_(:num)', 'Clients::modif_client/$1', ['as' => 'modif_client']);
-$routes->post('update', 'Clients::modif_client_update', ['as' => 'modif_client']);
-
-// soit :
-$routes->get('sup_client_(:num)', 'Clients::supCL_update/$1', ['as' => 'sup_client']);
-// soit :
-$routes->post('sup_client', 'Clients::supclient_update', ['as' => 'sup_client']);
-
-
+$routes->post('suppr-client', 'Client::delete', ['as' => 'suppr_client']);
