@@ -15,8 +15,8 @@ $routes->get('gestion_campagnes', 'Campagne::dashboard_client', ['as' => 'gestio
 $routes->get('gestion_campagnes_(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
 
 
-$routes->get('creation_campagne', 'Campagne::CréationC', ['as' => 'creation_campagne']);
-$routes->post('update', 'campagne::CréationC_update', ['as' => 'creation_campagne_update']);
+$routes->get('creation_campagne', 'Campagne::CreationC', ['as' => 'creation_campagne']);
+$routes->post('update', 'campagne::CreationC_update', ['as' => 'creation_campagne_update']);
 
 
 $routes->get('modif_campagne_(:num)', 'Campagne::modi_campagne/$1', ['as' => 'modif_campagne']);
@@ -53,3 +53,5 @@ $routes->post('update', 'Client::modif_client_update', ['as' => 'modif_client'])
 $routes->get('sup_client_(:num)', 'Client::supCL_update/$1', ['as' => 'sup_client']);
 // soit :
 $routes->post('sup_client', 'Client::supclient_update', ['as' => 'sup_client']);
+
+
