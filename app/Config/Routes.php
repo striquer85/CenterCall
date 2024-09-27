@@ -12,44 +12,35 @@ $routes->get('/', 'Campagne::index', ['as' => 'accueil']);
 
 // classe controleur Campagne
 $routes->get('gestion_campagnes', 'Campagne::dashboard_client', ['as' => 'gestion_campagnes']);
-$routes->get('gestion_campagnes_(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
+$routes->get('gestion_campagnes/(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
 
 
-$routes->get('creation_campagne', 'Campagne::CréationC', ['as' => 'creation_campagne']);
-$routes->post('update', 'campagne::CréationC_update', ['as' => 'creation_campagne_update']);
+$routes->get('creation_campagne', 'Campagne::ajout', ['as' => 'creation_campagne']);
+$routes->post('creation_campagne', 'campagne::create', ['as' => 'creation_campagne_update']);
 
 
-$routes->get('modif_campagne_(:num)', 'Campagne::modi_campagne/$1', ['as' => 'modif_campagne']);
-$routes->post('update_campagne', 'Campagne::modifCampagne_update', ['as' => 'modif_campagne_update']);
+$routes->get('modif_campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_campagne']);
+$routes->post('update_campagne', 'Campagne::update', ['as' => 'modif_campagne_update']);
 
-$routes->post('sup_campagne', 'Client::sup_campagne_update', ['as' => 'sup_campagne']);
+$routes->post('sup_campagne', 'Client::delete', ['as' => 'sup_campagne']);
 
-// 2 routes pour delete campagnes
+$routes->get('creation_questionnaire', 'Campagne::creationQuestionnaire', ['as' => 'creation_questionnaire']);
+$routes->post('update_questionaire', 'Campagne::creation_update', ['as' => 'questionnaire_update']);
 
-// classe controleur Questionnaire ?? pas sur... ptet plutôt Campagne
-$routes->get('creation_questionnaire', 'Campagne::CréationQuestionnaire', ['as' => 'creation_questionnaire']);
-$routes->post('update_questionaire', 'Campagne::CréationQ_update', ['as' => 'questionnaire_update']);
-
-$routes->get('modif_questionnaire_(:num)', 'Campagne::modif_questionnaire/$1', ['as' => 'modif_questionnaire']);
+$routes->get('modif_questionnaire/(:num)', 'Campagne::modif_questionnaire/$1', ['as' => 'modif_questionnaire']);
 $routes->post('update_questionaire', 'Campagne::modif_questionnaire_update', ['as' => 'modif_questionnaire_update']);
 
 $routes->post('sup_questionaire', 'Client::sup_questionaire_update', ['as' => 'sup_questionaire']);
 
-
-
 $routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 
 // classe controleur Client
-$routes->get('gestion_clients', 'Client::gestion_clients', ['as' => 'gestion_admin']);
+$routes->get('gestion-clients', 'Client::gestion-clients', ['as' => 'gestion-admin']);
 
+$routes->get('create', 'Client::ajout', ['as' => 'createGet']);
+$routes->post('create', 'Client::create', ['as' => 'createPost']);
 
-$routes->get('creation_client ', 'Client::creation_client', ['as' => 'Création_client']);
-$routes->post('update', 'Client::creation_client_update', ['as' => 'Création_client']);
+$routes->get('update/(:num)', 'Client::modif/$1', ['as' => 'updateGet']);
+$routes->post('update', 'Client::update', ['as' => 'updatePost']);
 
-$routes->get('modif_client_(:num)', 'Client::modif_client/$1', ['as' => 'modif_client']);
-$routes->post('update', 'Client::modif_client_update', ['as' => 'modif_client']);
-
-// soit :
-$routes->get('sup_client_(:num)', 'Client::supCL_update/$1', ['as' => 'sup_client']);
-// soit :
-$routes->post('sup_client', 'Client::supclient_update', ['as' => 'sup_client']);
+$routes->post('delete', 'Client::delete', ['as' => 'deletePost']);
