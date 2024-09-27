@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index', ['as' => 'accueil']); // version 1 : redirection vers gestion_clients
+$routes->get('/', 'campganes::index', ['as' => 'accueil']); // version 1 : redirection vers gestion_clients
 //$routes->post('/', 'Home::connexions_update', ['as' => 'connexions']);
 
 
