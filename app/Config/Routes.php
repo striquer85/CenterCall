@@ -40,18 +40,18 @@ $routes->post('sup_questionaire', 'Client::sup_questionaire_update', ['as' => 's
 $routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 
 // classe controleur Client
-$routes->get('gestion_clients', 'Client::gestion_clients', ['as' => 'gestion_admin']);
+$routes->get('gestion_clients', 'Clients::gestion_clients', ['as' => 'gestion_admin']);
 
 
-$routes->get('creation_client ', 'Client::creation_client', ['as' => 'Création_client']);
+$routes->get('creation_client ', 'Clients::creation_client', ['as' => 'Création_client']);
 $routes->post('update', 'Client::creation_client_update', ['as' => 'Création_client']);
 
-$routes->get('modif_client_(:num)', 'Client::modif_client/$1', ['as' => 'modif_client']);
-$routes->post('update', 'Client::modif_client_update', ['as' => 'modif_client']);
+$routes->get('modif_client_(:num)', 'Clients::modif_client/$1', ['as' => 'modif_client']);
+$routes->post('update', 'Clients::modif_client_update', ['as' => 'modif_client']);
 
 // soit :
-$routes->get('sup_client_(:num)', 'Client::supCL_update/$1', ['as' => 'sup_client']);
+$routes->get('sup_client_(:num)', 'Clients::supCL_update/$1', ['as' => 'sup_client']);
 // soit :
-$routes->post('sup_client', 'Client::supclient_update', ['as' => 'sup_client']);
+$routes->post('sup_client', 'Clients::supclient_update', ['as' => 'sup_client']);
 
 

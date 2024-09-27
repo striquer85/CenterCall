@@ -32,4 +32,5 @@
 </style>
 
 <body>
-    <?= $this->renderSection('content') ?>
+<?= $this->renderSection('content') ?>
+
