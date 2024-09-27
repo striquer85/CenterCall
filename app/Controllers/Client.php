@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class Client extends BaseController
+class client extends BaseController
 {
-    public function index(): string
-    {
-        return view('welcome_message');
-    }
+    // public function index(): string
+    // {
+    //     return view('welcome_message');
+    // }
 }
