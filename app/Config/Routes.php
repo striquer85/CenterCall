@@ -6,41 +6,38 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Campagne::index', ['as' => 'accueil']); 
-// version 1 : redirection vers gestion_clients
-//$routes->post('/', 'Home::connexions_update', ['as' => 'connexions']);
 
+$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
+$routes->get('gestion-campagnes/(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
 
-// classe controleur Campagne
-$routes->get('gestion_campagnes', 'Campagne::dashboard_client', ['as' => 'gestion_campagnes']);
-$routes->get('gestion_campagnes/(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
+// CRUD Campagne
+$routes->get('creation-campagne', 'Campagne::ajout', ['as' => 'creation_campagne_get']);
+$routes->post('creation-campagne', 'campagne::create', ['as' => 'creation_campagne_post']);
 
+$routes->get('modif-campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_campagne_get']);
+$routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_post']);
 
-$routes->get('creation_campagne', 'Campagne::ajout', ['as' => 'creation_campagne']);
-$routes->post('creation_campagne', 'campagne::create', ['as' => 'creation_campagne_update']);
+$routes->post('suppr-campagne', 'Campagne::delete', ['as' => 'suppr_campagne']);
 
+// CRUD Question (attention, penser au paramètre GET CampagneId)
+$routes->get('creation-question/(:num)', 'Campagne::ajout/$1', ['as' => 'creation_question_get']);
+$routes->post('creation-question', 'Campagne::create', ['as' => 'creation_question_post']);
 
-$routes->get('modif_campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_campagne']);
-$routes->post('update_campagne', 'Campagne::update', ['as' => 'modif_campagne_update']);
+$routes->get('modif-question/(:num)/(:num)', 'Campagne::modif/$1/$2', ['as' => 'modif_question_get']);
+$routes->post('modif-question', 'Campagne::update', ['as' => 'modif_question_post']);
 
-$routes->post('sup_campagne', 'Client::delete', ['as' => 'sup_campagne']);
-
-$routes->get('creation_questionnaire', 'Campagne::creationQuestionnaire', ['as' => 'creation_questionnaire']);
-$routes->post('update_questionaire', 'Campagne::creation_update', ['as' => 'questionnaire_update']);
-
-$routes->get('modif_questionnaire/(:num)', 'Campagne::modif_questionnaire/$1', ['as' => 'modif_questionnaire']);
-$routes->post('update_questionaire', 'Campagne::modif_questionnaire_update', ['as' => 'modif_questionnaire_update']);
-
-$routes->post('sup_questionaire', 'Client::sup_questionaire_update', ['as' => 'sup_questionaire']);
+$routes->post('suppr-question', 'Campagne::delete', ['as' => 'suppr_question']);
+ 
 
 $routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 
-// classe controleur Client
-$routes->get('gestion-clients', 'Client::gestion-clients', ['as' => 'gestion-admin']);
+// CRUD Client
+$routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion-admin']);
 
-$routes->get('create', 'Client::ajout', ['as' => 'createGet']);
-$routes->post('create', 'Client::create', ['as' => 'createPost']);
+$routes->get('creation-client', 'Client::ajout', ['as' => 'creation-client_get']);
+$routes->post('creation-client', 'Client::create', ['as' => 'creation-client_post']);
 
-$routes->get('update/(:num)', 'Client::modif/$1', ['as' => 'updateGet']);
-$routes->post('update', 'Client::update', ['as' => 'updatePost']);
+$routes->get('modif-client/(:num)', 'Client::modif/$1', ['as' => 'modif_client_get']);
+$routes->post('modif-client', 'Client::update', ['as' => 'modif_client_post']);
 
-$routes->post('delete', 'Client::delete', ['as' => 'deletePost']);
+$routes->post('suppr-client', 'Client::delete', ['as' => 'suppr_client']);
