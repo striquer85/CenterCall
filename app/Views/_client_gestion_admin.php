@@ -1,6 +1,6 @@
-<?= $this->extend('Layout')?>
-<?= $this->section('contenu')?>
-
+<!-- <?= $this->extend('Layout')?>
+<?= $this->section('contenu')?> -->
+<h1> Gestion des étudiants </h1>
 <?php
 $table = new \CodeIgniter\View\Table();
 $table->setHeading('RAISON_SOCIALE', 'NOM','PRENOM', 'EMAIL', 'TELEPHONE','ADRESSE','CODE_POSTAL','VILLE');
@@ -27,4 +27,4 @@ var_dump($client);
 ?>
 
 
-<?= $this->endSection()?>
+<!-- <?= $this->endSection()?> -->

@@ -2,22 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\Client;
 
-class Clients extends BaseController
+class Client extends BaseController
 {
 
     private  $clientModel;
     public function __construct()
     {
-        $this->clientModel = new Client;
+        $this->clientModel = model('Client');
     }
 
-    public function gestion_clients(): string
+    public function gestionclient(): string
     {
         $client = $this->clientModel->findAll();
         return view(
-            'gestion_admin',
+            '_client_gestion_admin',
             ['listeClients' => $client]
         );
     }
