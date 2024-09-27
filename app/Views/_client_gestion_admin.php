@@ -3,7 +3,7 @@
 
 <?php
 $table = new \CodeIgniter\View\Table();
-$table->setHeading('RAISON_SOCIALE', 'nom','PRENOM', '', 'suprimer');
+$table->setHeading('RAISON_SOCIALE', 'NOM','PRENOM', 'EMAIL', 'TELEPHONE','ADRESSE','CODE_POSTAL','VILLE');
 
 
 foreach ($listeClients as $client) {
@@ -19,9 +19,9 @@ foreach ($listeClients as $client) {
         $client['VILLE'],
 
     );
-    //  echo $etudiant['nom'] . "\n" . $etudiant['prenom'] . "\n" . "<br> <br>";
+ 
 }
-
+var_dump($client);
  echo $table->generate();
 
 ?>
