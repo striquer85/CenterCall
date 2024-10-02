@@ -20,7 +20,7 @@ $routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_pos
 $routes->post('suppr-campagne', 'Campagne::delete', ['as' => 'suppr_campagne']);
 
 // CRUD Question (attention, penser au paramètre GET CampagneId)
-$routes->get('gestion-question/(:num)', 'Campagne::gestionquestion/$1', ['as' => 'gestion_client']);
+$routes->get('gestion-question/(:num)', 'Campagne::gestionquestion/$1', ['as' => 'gestion_question']);
 
 $routes->get('creation-question/(:num)', 'Campagne::ajout/$1', ['as' => 'creation_question_get']);
 $routes->post('creation-question', 'Campagne::create', ['as' => 'creation_question_post']);
