@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class Question extends Model
 {
     protected $table            = 'question';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID_QUESTION';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['QUESTION','TOTAL_REPONSES_1','TOTAL_REPONSES_2','TOTAL_REPONSES_3','TOTAL_REPONSES_4','TOTAL_REPONSES_5'];
+    protected $allowedFields    = ['ID_CAMPAGNE','QUESTION','TOTAL_REPONSES_1','TOTAL_REPONSES_2','TOTAL_REPONSES_3','TOTAL_REPONSES_4','TOTAL_REPONSES_5'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

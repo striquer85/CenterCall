@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class Client extends Model
 {
     protected $table            = 'client';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID_CLIENT';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['RAISON_SOCIALE','NOM','PRENOM','EMAIL','TELEPHONE','ADRESSE','CODE_POSTAL','VILLE'];
+    protected $allowedFields    = ['ID_UTILISATEUR','RAISON_SOCIALE','NOM','PRENOM','EMAIL','TELEPHONE','ADRESSE','CODE_POSTAL','VILLE'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

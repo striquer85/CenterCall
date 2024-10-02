@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class Campagne extends Model
 {
     protected $table            = 'campagne';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'ID_CAMPAGNE';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['DATE','TITRE','LIBELLE','CONTACTS'];
+    protected $allowedFields    = ['ID_CLIENT','DATE','TITRE','LIBELLE','CONTACTS'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

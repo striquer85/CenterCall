@@ -20,18 +20,18 @@ $routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_pos
 $routes->post('suppr-campagne', 'Campagne::delete', ['as' => 'suppr_campagne']);
 
 // CRUD Question (attention, penser au paramètre GET CampagneId)
-$routes->get('gestion-question/(:num)', 'Campagne::gestionquestion/$1', ['as' => 'gestion_question']);
+$routes->get('gestion-question/(:num)', 'Question::gestionquestion/$1', ['as' => 'gestion_question']);
 
-$routes->get('creation-question/(:num)', 'Campagne::ajout/$1', ['as' => 'creation_question_get']);
-$routes->post('creation-question', 'Campagne::create', ['as' => 'creation_question_post']);
+$routes->get('creation-question/(:num)', 'Question::ajout/$1', ['as' => 'creation_question_get']);
+$routes->post('creation-question', 'Question::create', ['as' => 'creation_question_post']);
 
-$routes->get('modif-question/(:num)/(:num)', 'Campagne::modif/$1/$2', ['as' => 'modif_question_get']);
-$routes->post('modif-question', 'Campagne::update', ['as' => 'modif_question_post']);
+$routes->get('modif-question/(:num)/(:num)', 'Question::modif/$1/$2', ['as' => 'modif_question_get']);
+$routes->post('modif-question', 'Question::update', ['as' => 'modif_question_post']);
 
-$routes->post('suppr-question', 'Campagne::delete', ['as' => 'suppr_question']);
+$routes->post('suppr-question', 'Question::delete', ['as' => 'suppr_question']);
  
 
-$routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
+$routes->get('synthese', 'Question::synthese', ['as' => 'synthese']);
 
 // CRUD Client
 $routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion-admin']);
