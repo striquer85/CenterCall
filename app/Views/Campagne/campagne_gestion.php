@@ -7,13 +7,11 @@ use Config\View;
 
 $table = new \CodeIgniter\View\Table();
 
-$table->setHeading('Titre_Campagne','Voir_Campagne','Modifier');
+$table->setHeading(['Titre_Campagne','Voir_Campagne','Modifier']);
 
 foreach($listeCampagnes as $campagne){
 
-    $table->addRow(
-        $campagne['TITRE']
-    );
+    $table->addRow($campagne['TITRE']);
     
 }
 echo $table->generate();

@@ -16,21 +16,12 @@
 </head>
 
 <style>
-    #titreMenu {
-        font-size: 75pt;
-        font-family: impact;
-        color: #000000;
-        text-align: center;
-        
-        margin-top: -8px;
-        margin-left: -8px;
-        margin-right: -8px;
-        margin-bottom: -1px;
-        border: 5px solid black;
-        
-    }
+
 </style>
 
 <body>
-<?= $this->renderSection('content') ?>
+    <?= $this->renderSection('contenu') ?>
 
+</body>
+
+</html>
