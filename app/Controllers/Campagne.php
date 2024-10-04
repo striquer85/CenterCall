@@ -17,7 +17,6 @@ class Campagne extends BaseController
     }
     public function dashboard($ID_CLIENT): string
     {
-        
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
@@ -28,7 +27,7 @@ class Campagne extends BaseController
         ]);
     }
 
-    public function ajout(): string
+    public function ajout($ID_CLIENT): string
     {    
         return view('Campagne/creation');
     }
