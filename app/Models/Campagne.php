@@ -45,4 +45,10 @@ class Campagne extends Model
     protected $afterDelete    = [];
 
     
+    public function findJoin()
+    {
+        return $this->select('campagne.DATE,campagne.TITRE ,campagne.LIBELLE ')
+        ->join('', '')
+        ->findAll() ;
+    }
 }
