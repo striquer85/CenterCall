@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Campagne::index', ['as' => 'accueil']); 
 
-$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
+$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => '_gestion_campagnes']);
 $routes->get('gestion-campagnes/(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
 
 // CRUD Campagne
