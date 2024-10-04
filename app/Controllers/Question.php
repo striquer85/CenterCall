@@ -13,12 +13,14 @@ class Question extends BaseController
         $this->campagneModel = model('Campagne');
     }
 
-    public function gestionquestion($idCampagne): string
+    public function gestionQuestion($idCampagne): string
     {
-        $questions = $this->questionModel->findAll();
+        $listeQuestion = $this->questionModel->findIdCampagne($idCampagne);
+        $idCampagne = $this->campagneModel->find($idCampagne);
         return view(
             'Question/gestion',
-            ['listeQuestion' => $questions]
+            ['campagne' => $idCampagne,
+            'listeQuestion' => $listeQuestion]
         );
     }
 }
