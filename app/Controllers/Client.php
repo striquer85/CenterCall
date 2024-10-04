@@ -16,7 +16,7 @@ class Client extends BaseController
     {
         $client = $this->clientModel->findAll();
         return view(
-            '_client_gestion_admin',
+            'Client/gestion_admin',
             ['listeClients' => $client]
         );
     }

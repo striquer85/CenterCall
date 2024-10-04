@@ -16,7 +16,7 @@ class Campagne extends BaseController
 
         $campagne = $campagnetModel->findAll();
 
-        return view('_campagne_gestion', [
+        return view('Campagne/gestion', [
             'listeCampagnes' => $campagne
         ]);
     }
