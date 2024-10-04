@@ -8,8 +8,8 @@ class Campagne extends BaseController
     {
         return view('accueil');
     }
-    public function gestion_campagnes(): string
+    public function dashboard(): string
     {
-        return view('gestion_campagnes');
+        return view('_campagne_gestion');
     }
 }
