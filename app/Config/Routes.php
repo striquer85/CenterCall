@@ -18,6 +18,7 @@ $routes->get('modif-campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_camp
 $routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_post']);
 
 $routes->post('suppr-campagne', 'Campagne::delete', ['as' => 'suppr_campagne']);
+$routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 
 // CRUD Question (attention, penser au paramètre GET CampagneId)
 $routes->get('gestion-question/(:num)', 'Question::gestionquestion/$1', ['as' => 'gestion_question']);
@@ -30,9 +31,6 @@ $routes->post('modif-question', 'Question::update', ['as' => 'modif_question_pos
 
 $routes->post('suppr-question', 'Question::delete', ['as' => 'suppr_question']);
  
-
-$routes->get('synthese', 'Question::synthese', ['as' => 'synthese']);
-
 // CRUD Client
 $routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion_admin']);
 

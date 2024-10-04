@@ -10,6 +10,14 @@ class Campagne extends BaseController
     }
     public function dashboard(): string
     {
-        return view('_campagne_gestion');
+        $campagnetModel = new \App\Models\Campagne();
+
+        // récupére tous les campagnes de la table avec "findAll()" 
+
+        $campagne = $campagnetModel->findAll();
+
+        return view('Campagne/gestion', [
+            'listeCampagnes' => $campagne
+        ]);
     }
 }
