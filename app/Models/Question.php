@@ -43,4 +43,11 @@ class Question extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function findIdCampagne($idCampagne) {
+        return $this
+        ->select('QUESTION, ID_QUESTION, ID_CAMPAGNE')
+        ->where('ID_CAMPAGNE =',$idCampagne)
+        ->findAll();
+    }
 }
