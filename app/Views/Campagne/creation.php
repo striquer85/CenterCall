@@ -26,6 +26,10 @@
 <form action="upload.php" method="post" enctype="multipart/form-data">
     <input type="file" name="monFichier">
     <input type="submit" value="Envoyer">
+
+    <label for="uname">Contenue Mail:</label>
+    <input type="text" id="descriptif" name="descriptif" placeholder="Tapez le contenue du mail : "
+        minlength="3" maxlength="100" size="18">
 </form>
 
 
