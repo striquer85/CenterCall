@@ -15,7 +15,10 @@ class Question extends BaseController
 
     public function gestionquestion($idCampagne): string
     {
-        return view('Question/gestion');
+        $questions = $this->questionModel->findAll();
+        return view(
+            'Question/gestion',
+            ['listeQuestion' => $questions]
+        );
     }
-
 }
