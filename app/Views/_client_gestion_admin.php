@@ -1,8 +1,9 @@
-<!-- <?= $this->extend('Layout')?>
-<?= $this->section('contenu')?> -->
+<?= $this->extend('Layout')?>
+<?= $this->section('contenu')?>
 <h1> Gestion des étudiants </h1>
 <?php
 $table = new \CodeIgniter\View\Table();
+echo '<a href="' . url_to('creation-client_get') . '" <button class="button">Nouveaux Client</button></a>';
 $table->setHeading('RAISON_SOCIALE', 'NOM','PRENOM', 'EMAIL', 'TELEPHONE','ADRESSE','CODE_POSTAL','VILLE');
 
 
@@ -21,10 +22,10 @@ foreach ($listeClients as $client) {
     );
  
 }
-var_dump($client);
+
  echo $table->generate();
 
 ?>
 
 
-<!-- <?= $this->endSection()?> -->
+<?= $this->endSection()?>
