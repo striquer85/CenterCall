@@ -43,4 +43,11 @@ class Client extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function findJoinAll()
+    {
+        return $this->select(', , , ')
+        ->join('', '')
+        ->findAll() ;
+    }
 }

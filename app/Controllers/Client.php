@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\HTTP\RedirectResponse;
 
 
 class Client extends BaseController
@@ -24,13 +25,23 @@ class Client extends BaseController
 
     public function ajout(): string
     {
-        return view('_client_creation');
+        return view('Client/creation');
     }
 
-    public function create($clientId): string
+    public function create(): RedirectResponse
     {
-        $client_modif = $this->clientModel->find($clientId);
-    return view('_client_modif', ['client => $client_modif' ]);
+        $data = $this->request->getPost();
+        $this->clientModel->insert($data);
+        return redirect('gestion_admin');
+
     }
+
+    public function delete($ID_CLIENT): RedirectResponse
+    {
+        $this->clientModel->delete($ID_CLIENT);
+        return redirect('gestion_admin');
+    }
+
+
 
 }

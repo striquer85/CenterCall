@@ -4,6 +4,12 @@ namespace App\Controllers;
 
 class Campagne extends BaseController
 {
+
+    private  $clientModel;
+    public function __construct()
+    {
+        $this->clientModel = model('Client');
+    }
     public function index(): string
     {
         return view('accueil');
@@ -20,4 +26,14 @@ class Campagne extends BaseController
             'listeCampagnes' => $campagne
         ]);
     }
+
+    public function ajout(): string
+    {
+        $campagnetModel = new \App\Models\Campagne();
+
+        
+
+        return view('Campagne/creation');
+    }
+    
 }
