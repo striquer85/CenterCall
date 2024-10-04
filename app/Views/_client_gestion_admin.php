@@ -3,6 +3,7 @@
 <h1> Gestion des étudiants </h1>
 <?php
 $table = new \CodeIgniter\View\Table();
+echo '<a href="' . url_to('creation-client_get') . '" <button class="button">Nouveaux Client</button></a>';
 $table->setHeading('RAISON_SOCIALE', 'NOM','PRENOM', 'EMAIL', 'TELEPHONE','ADRESSE','CODE_POSTAL','VILLE');
 
 
