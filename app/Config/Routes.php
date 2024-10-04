@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Campagne::index', ['as' => 'accueil']); 
 
-$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => '_gestion_campagnes']);
+$routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
 $routes->get('gestion-campagnes/(:num)', 'Campagne::dashboardclient/$1', ['as' => 'dashboard_client']);
 
 // CRUD Campagne
@@ -40,4 +40,5 @@ $routes->post('creation-client', 'Client::create', ['as' => 'creation-client_pos
 $routes->get('modif-client/(:num)', 'Client::modif/$1', ['as' => 'modif_client_get']);
 $routes->post('modif-client', 'Client::update', ['as' => 'modif_client_post']);
 
-$routes->post('suppr-client', 'Client::delete', ['as' => 'suppr_client']);
+$routes->get('suppr-client-(:num)', 'Client::delete/$1', ['as' => 'suppr_client']);
+$routes->post('delete-update', 'Client::delete_update/$1', ['as' => 'delete_update']);
