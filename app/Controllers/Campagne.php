@@ -20,4 +20,14 @@ class Campagne extends BaseController
             'listeCampagnes' => $campagne
         ]);
     }
+
+    public function ajout(): string
+    {
+        $campagnetModel = new \App\Models\Campagne();
+
+        
+
+        return view('Campagne/creation');
+    }
+    
 }
