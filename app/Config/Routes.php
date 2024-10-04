@@ -9,10 +9,10 @@ $routes->get('/', 'Campagne::index', ['as' => 'accueil']);
 
 // route v1 
 
-// $routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
+$routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
 
 // route test 
-$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
+// $routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
 
 // CRUD Campagne
 $routes->get('creation-campagne', 'Campagne::ajout', ['as' => 'creation_campagne_get']);
