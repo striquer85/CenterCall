@@ -34,7 +34,7 @@ $routes->post('suppr-question', 'Question::delete', ['as' => 'suppr_question']);
 $routes->get('synthese', 'Question::synthese', ['as' => 'synthese']);
 
 // CRUD Client
-$routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion-admin']);
+$routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion_admin']);
 
 $routes->get('creation-client', 'Client::ajout', ['as' => 'creation-client_get']);
 $routes->post('creation-client', 'Client::create', ['as' => 'creation-client_post']);

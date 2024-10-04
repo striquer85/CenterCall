@@ -1,5 +1,5 @@
-<!-- <?= $this->extend('Layout')?>
-<?= $this->section('contenu')?> -->
+<?= $this->extend('Layout')?>
+<?= $this->section('contenu')?>
 <h1> Gestion des étudiants </h1>
 <?php
 $table = new \CodeIgniter\View\Table();
@@ -21,10 +21,10 @@ foreach ($listeClients as $client) {
     );
  
 }
-var_dump($client);
+
  echo $table->generate();
 
 ?>
 
 
-<!-- <?= $this->endSection()?> -->
+<?= $this->endSection()?>

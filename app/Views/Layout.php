@@ -32,5 +32,8 @@
 </style>
 
 <body>
-<?= $this->renderSection('content') ?>
+<?= $this->renderSection('contenu') ?>
+
+
+<?= $this->renderSection('contenu') ?>
 
