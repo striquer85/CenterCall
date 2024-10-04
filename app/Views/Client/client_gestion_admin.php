@@ -1,5 +1,5 @@
-<!-- <?= $this->extend('Layout')?>
-<?= $this->section('contenu')?> -->
+<?= $this->extend('Layout')?>
+<?= $this->section('contenu')?> 
 <h1> Gestion des étudiants </h1>
 <?php
 $table = new \CodeIgniter\View\Table();
@@ -26,5 +26,4 @@ var_dump($client);
 
 ?>
 
-
-<!-- <?= $this->endSection()?> -->
+<?= $this->endSection()?>
