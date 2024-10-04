@@ -16,7 +16,7 @@ $routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campa
 
 // CRUD Campagne
 $routes->get('creation-campagne', 'Campagne::ajout', ['as' => 'creation_campagne_get']);
-$routes->post('creation-campagne', 'campagne::create', ['as' => 'creation_campagne_post']);
+$routes->post('creation-campagne', 'Campagne::create', ['as' => 'creation_campagne_post']);
 
 $routes->get('modif-campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_campagne_get']);
 $routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_post']);

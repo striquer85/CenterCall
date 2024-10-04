@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Campagne extends BaseController
 {
@@ -30,6 +31,17 @@ class Campagne extends BaseController
     public function ajout(): string
     {    
         return view('Campagne/creation');
+    }
+
+    public function create() : RedirectResponse
+    {    
+        
+        $data = $this->request->getPost();
+        // var_dump($data);
+        // die();
+        $this->campagnetModel->insert($data);
+        
+        return redirect('gestion_campagnes');
     }
     
 }
