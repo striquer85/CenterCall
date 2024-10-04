@@ -3,7 +3,7 @@
 
 <br>
 <br>
-<a href="<?= url_to('creation_campagne_get') ?>"><button class="button" type="button">Nouvelle Campagne</button></a>
+<a href="<?= url_to('creation_campagne_post') ?>"><button class="button" type="button">Nouvelle Campagne</button></a>
     <br>
     <br>
 

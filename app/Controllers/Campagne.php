@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Campagne extends BaseController
 {
@@ -14,13 +15,13 @@ class Campagne extends BaseController
     {
         return view('accueil');
     }
-    public function dashboard(): string
+    public function dashboard($ID_CLIENT): string
     {
         
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
-        $campagne = $this->campagnetModel->findAll();
+        $campagne = $this->campagnetModel->findIdClient($ID_CLIENT);
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne
@@ -30,6 +31,17 @@ class Campagne extends BaseController
     public function ajout(): string
     {    
         return view('Campagne/creation');
+    }
+
+    public function create() : RedirectResponse
+    {    
+        
+        $data = $this->request->getPost();
+        // var_dump($data);
+        // die();
+        $this->campagnetModel->insert($data);
+        
+        return redirect('gestion_campagnes');
     }
     
 }

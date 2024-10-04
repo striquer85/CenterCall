@@ -9,14 +9,14 @@ $routes->get('/', 'Campagne::index', ['as' => 'accueil']);
 
 // route v1 
 
-// $routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
+$routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
 
 // route test 
-$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
+// $routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
 
 // CRUD Campagne
 $routes->get('creation-campagne', 'Campagne::ajout', ['as' => 'creation_campagne_get']);
-$routes->post('creation-campagne', 'campagne::create', ['as' => 'creation_campagne_post']);
+$routes->post('creation-campagne', 'Campagne::create', ['as' => 'creation_campagne_post']);
 
 $routes->get('modif-campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_campagne_get']);
 $routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_post']);
