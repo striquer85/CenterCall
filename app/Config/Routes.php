@@ -9,10 +9,10 @@ $routes->get('/', 'Campagne::index', ['as' => 'accueil']);
 
 // route v1 
 
-// $routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
+$routes->get('gestion-campagnes-(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
 
 // route test 
-$routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
+// $routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
 
 // CRUD Campagne
 $routes->get('creation-campagne', 'Campagne::ajout', ['as' => 'creation_campagne_get']);
@@ -27,7 +27,7 @@ $routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 // CRUD Question (attention, penser au paramètre GET CampagneId)
 $routes->get('gestion-question/(:num)', 'Question::gestionQuestion/$1', ['as' => 'gestion_question']);
 
-$routes->get('creation-question', 'Question::ajout', ['as' => 'creation_question_get']);
+$routes->get('creation-question/(:num)', 'Question::ajout/$1', ['as' => 'creation_question_get']);
 $routes->post('creation-question', 'Question::create', ['as' => 'creation_question_post']);
 
 $routes->get('modif-question/(:num)/(:num)', 'Question::modif/$1/$2', ['as' => 'modif_question_get']);

@@ -19,8 +19,21 @@ class Question extends BaseController
         $idCampagne = $this->campagneModel->find($idCampagne);
         return view(
             'Question/gestion',
-            ['campagne' => $idCampagne,
-            'listeQuestion' => $listeQuestion]
+            [
+                'campagne' => $idCampagne,
+                'listeQuestion' => $listeQuestion
+            ]
         );
+    }
+    public function ajout($idCampagne): string
+    {
+        $idCampagne = $this->campagneModel->find($idCampagne);
+        return view('Question/creation', ['idCampagne' => $idCampagne]);
+    }
+    
+    public function delete($idQuestion)
+    {
+        $this->questionModel->delete($idQuestion);
+        return redirect('listeQuestion');
     }
 }

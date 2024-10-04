@@ -15,13 +15,13 @@ class Campagne extends BaseController
     {
         return view('accueil');
     }
-    public function dashboard(): string
+    public function dashboard($ID_CLIENT): string
     {
         
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
-        $campagne = $this->campagnetModel->findAll();
+        $campagne = $this->campagnetModel->findIdClient($ID_CLIENT);
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne

@@ -44,11 +44,11 @@ class Campagne extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    
-    public function findJoin()
-    {
-        return $this->select('campagne.DATE,campagne.TITRE ,campagne.LIBELLE ')
-        ->join('', '')
-        ->findAll() ;
-    }
+    public function findIDClient($ID_CLIENT) {
+        return $this
+        ->select('ID_CLIENT, TITRE')
+        ->where('ID_CLIENT =', $ID_CLIENT)
+        ->findAll();
+    }  
+
 }
