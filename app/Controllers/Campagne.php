@@ -5,10 +5,10 @@ namespace App\Controllers;
 class Campagne extends BaseController
 {
 
-    private  $clientModel;
+    private  $campagnetModel;
     public function __construct()
     {
-        $this->clientModel = model('Client');
+        $this->campagnetModel = model('Campagne');
     }
     public function index(): string
     {
@@ -16,11 +16,11 @@ class Campagne extends BaseController
     }
     public function dashboard(): string
     {
-        $campagnetModel = new \App\Models\Campagne();
+        
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
-        $campagne = $campagnetModel->findAll();
+        $campagne = $this->campagnetModel->findAll();
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne
@@ -28,11 +28,7 @@ class Campagne extends BaseController
     }
 
     public function ajout(): string
-    {
-        $campagnetModel = new \App\Models\Campagne();
-
-        
-
+    {    
         return view('Campagne/creation');
     }
     
