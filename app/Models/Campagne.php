@@ -43,4 +43,12 @@ class Campagne extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function findIDClient($ID_CLIENT) {
+        return $this
+        ->select('ID_CLIENT, TITRE')
+        ->where('ID_CLIENT =', $ID_CLIENT)
+        ->findAll();
+    }  
+
 }

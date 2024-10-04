@@ -1,6 +1,6 @@
-<?= $this->extend('Layout') ?>
+<?= $this->extend('layout') ?>
 
-<?= $this->section('content') ?>
+<?= $this->section('contenu') ?>
 
 <h1 id="titreMenu">CenterCall</h1>
 

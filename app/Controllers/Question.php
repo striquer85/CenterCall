@@ -5,15 +5,35 @@ namespace App\Controllers;
 class Question extends BaseController
 {
     private $questionModel;
+    private $campagneModel;
 
     public function __construct()
     {
         $this->questionModel = model('Question');
+        $this->campagneModel = model('Campagne');
     }
 
-    public function gestionquestion($idCampagne): string
+    public function gestionQuestion($idCampagne): string
     {
-        return view('_question_gestion');
+        $listeQuestion = $this->questionModel->findIdCampagne($idCampagne);
+        $idCampagne = $this->campagneModel->find($idCampagne);
+        return view(
+            'Question/gestion',
+            [
+                'campagne' => $idCampagne,
+                'listeQuestion' => $listeQuestion
+            ]
+        );
+    }
+    public function ajout($idCampagne): string
+    {
+        $idCampagne = $this->questionModel->findIdCampagne($idCampagne);
+        return view('Question/creation', ['idCampagne' => $idCampagne]);
     }
 
+    public function delete($idQuestion)
+    {
+        $this->questionModel->delete($idQuestion);
+        return redirect('listeQuestion');
+    }
 }
