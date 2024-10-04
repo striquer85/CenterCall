@@ -19,5 +19,18 @@ class Client extends BaseController
             'Client/gestion_admin',
             ['listeClients' => $client]
         );
+
     }
+
+    public function ajout(): string
+    {
+        return view('_client_creation');
+    }
+
+    public function create($clientId): string
+    {
+        $client_modif = $this->clientModel->find($clientId);
+    return view('_client_modif', ['client => $client_modif' ]);
+    }
+
 }
