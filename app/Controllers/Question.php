@@ -27,10 +27,10 @@ class Question extends BaseController
     }
     public function ajout($idCampagne): string
     {
-        $idCampagne = $this->campagneModel->find($idCampagne);
+        $idCampagne = $this->questionModel->findIdCampagne($idCampagne);
         return view('Question/creation', ['idCampagne' => $idCampagne]);
     }
-    
+
     public function delete($idQuestion)
     {
         $this->questionModel->delete($idQuestion);
