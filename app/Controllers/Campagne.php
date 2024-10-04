@@ -20,7 +20,7 @@ class Campagne extends BaseController
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
-        $campagne = $this->campagnetModel->find($ID_CLIENT);
+        $campagne = $this->campagnetModel->findIdClient($ID_CLIENT);
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne
