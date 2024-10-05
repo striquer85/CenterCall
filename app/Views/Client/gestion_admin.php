@@ -1,6 +1,7 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<h1> Gestion des étudiants </h1>
+<h1 id="titreMenu">Gestion Clients</h1>
+<br><br>
 <?php
 $table = new \CodeIgniter\View\Table();
 echo '<a href="' . url_to('creation-client_get') . '" <button class="button">Nouveaux Client</button></a><br> <br>';
