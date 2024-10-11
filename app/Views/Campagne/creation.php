@@ -9,7 +9,8 @@
     <h2>Création de la campagne</h2>
 
     <input type="hidden" id="ID_CLIENT" name="ID_CLIENT" value="<?= $idClient['ID_CLIENT'] ?>" />
-
+ 
+    
     <label for="name">Titre de la campagne :</label>
 
     <input type="text" id="TITRE" name="TITRE" required
