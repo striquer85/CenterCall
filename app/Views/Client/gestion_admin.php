@@ -32,3 +32,4 @@ echo $table->generate();
 
 
 <?= $this->endSection() ?>
+
