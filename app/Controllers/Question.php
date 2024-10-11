@@ -17,6 +17,7 @@ class Question extends BaseController
     {
         $questions = $this->questionModel->findIdCampagne($idCampagne);
         $idCampagne = $this->campagneModel->find($idCampagne);
+
         return view(
             'Question/gestion',
             [

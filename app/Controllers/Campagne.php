@@ -1,15 +1,19 @@
 <?php
 
 namespace App\Controllers;
+
 use CodeIgniter\HTTP\RedirectResponse;
 
 class Campagne extends BaseController
 {
 
     private  $campagnetModel;
+    private  $clientModel;
+
     public function __construct()
     {
         $this->campagnetModel = model('Campagne');
+        $this->clientModel = model('Client');
     }
     public function index(): string
     {
@@ -21,26 +25,27 @@ class Campagne extends BaseController
         // récupére tous les campagnes de la table avec "findAll()" 
 
         $campagne = $this->campagnetModel->findIdClient($ID_CLIENT);
+        $idClient = $this->clientModel->find($ID_CLIENT);
 
         return view('Campagne/gestion', [
-            'listeCampagnes' => $campagne
+            'listeCampagnes' => $campagne,
+            'client' => $idClient
         ]);
     }
 
     public function ajout($ID_CLIENT): string
-    {    
+    {
         return view('Campagne/creation');
     }
 
-    public function create() : RedirectResponse
-    {    
-        
+    public function create(): RedirectResponse
+    {
+
         $data = $this->request->getPost();
         // var_dump($data);
         // die();
         $this->campagnetModel->insert($data);
-        
+
         return redirect('gestion_campagnes');
     }
-    
 }
