@@ -35,17 +35,24 @@ class Campagne extends BaseController
 
     public function ajout($ID_CLIENT): string
     {
-        return view('Campagne/creation');
+        $idClient = $this->clientModel->find($ID_CLIENT);
+        return view('Campagne/creation',['idClient' =>$idClient]);
     }
 
-    public function create(): RedirectResponse
+    public function create()
     {
-
+        $idClient=$this->request->getPost('ID_CLIENT');
         $data = $this->request->getPost();
-        // var_dump($data);
-        // die();
         $this->campagnetModel->insert($data);
-
-        return redirect('gestion_campagnes');
+        return redirect()->to("gestion-campagnes/$idClient");
     }
+
+    public function modif($ID_CAMPAGNE): string
+    {
+        $campagne = $this->campagnetModel->find($ID_CAMPAGNE);
+        // var_dump($campagne);
+        // die();
+        return view('Campagne/modif',['campagne' =>$campagne]);
+    }
+
 }
