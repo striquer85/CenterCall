@@ -60,6 +60,14 @@ form {
     font-size: 1.3em;
 }
 
+.form-suppression {
+    padding: 0;
+    margin: 0;
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -125,13 +133,22 @@ legend {
 }
 
 label {
+    font-size: 1.2em;
+    color: #333;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+label:after {
+    content: " *";
+    color: red;
 }
 
 label.light {
     font-weight: 300;
     display: inline;
+    margin-bottom: 8px;
 }
 
 

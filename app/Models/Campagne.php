@@ -47,8 +47,7 @@ class Campagne extends Model
     public function findIDClient($ID_CLIENT) {
         return $this
         ->select('ID_CLIENT, TITRE')
-        ->where('ID_CLIENT =', $ID_CLIENT)
+        ->where('ID_CLIENT', $ID_CLIENT)
         ->findAll();
     }  
-
 }
