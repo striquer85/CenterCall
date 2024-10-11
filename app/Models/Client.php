@@ -45,25 +45,27 @@ class Client extends Model
     protected $afterDelete    = [];
 
 
+   
 
-    //     public function deleteClientWithCampaigns($clientId) {
-           
-    
-    //         // Suppression des questions liées aux campagnes du client
-    //         $this->db->query("
-    //             DELETE FROM question 
-    //             WHERE ID_CAMPAGNE IN (
-    //                 SELECT ID_CAMPAGNE FROM campagne WHERE ID_CLIENT = ?
-    //             )", [$clientId]);
-    
-    //         // Suppression des campagnes du client
-    //         $this->db->delete('campagne', ['ID_CLIENT' => $clientId]);
-    
-    //         // Suppression du client
-    //         $this->db->delete('client', ['ID_CLIENT' => $clientId]);
-    
 
-        
-    // }
+   
+
+    // public function deleteClientWithCampaigns($clientId) {
+    //     // Suppression des questions liées aux campagnes du client
+    //     $this->db->query("
+    //         DELETE q 
+    //         FROM question q
+    //         WHERE q.ID_CAMPAGNE IN (
+    //             SELECT c.ID_CAMPAGNE 
+    //             FROM campagne c 
+    //             WHERE c.ID_CLIENT = ?
+    //         )
+    //     ", [$clientId]);
     
+    //     // Suppression des campagnes du client
+    //     $this->db->delete('campagne', ['ID_CLIENT' => $clientId]);
+    
+    //     // Suppression du client
+    //     $this->db->delete('client', ['ID_CLIENT' => $clientId]);
+    // }    
 }
