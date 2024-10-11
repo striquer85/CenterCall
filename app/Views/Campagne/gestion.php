@@ -3,9 +3,9 @@
 <h1 id="titreMenu">Gestion Campagnes</h1>
 <br>
 <br>
-<a href="<?= url_to('creation_campagne_get') ?>"><button class="button" type="button">Nouvelle Campagne</button></a>
-    <br>
-    <br>
+<a href="<?= url_to('creation_campagne_get',$campagne['ID_CLIENT']) ?>"><button class="button" type="button">Nouvelle Campagne</button></a>
+<br>
+<br>
 
 <?php
 
