@@ -9,9 +9,13 @@ class Client extends BaseController
 {
 
     private  $clientModel;
+    private $campganeModel;
+    private $questionModel;
     public function __construct()
     {
         $this->clientModel = model('Client');
+        $this->campganeModel = model('Campagne');
+        $this->questionModel = model('Question');
     }
 
     public function gestionclient(): string
@@ -37,7 +41,11 @@ class Client extends BaseController
 
     public function delete($ID_CLIENT): RedirectResponse
     {
-        $this->clientModel->delete($ID_CLIENT);
+        $dataSupp = $this->campganeModel->deleteCampaignsAndQuestionsByClientId($ID_CLIENT);
+
+
+        // Supprimer le client
+        $this->clientModel->deleteClientById($ID_CLIENT);
         return redirect('gestion_admin');
     }
 
@@ -47,10 +55,10 @@ class Client extends BaseController
         return view('Client\modif', ['client' => $client_modif]);
     }
 
-    public function update() : RedirectResponse {
+    public function update(): RedirectResponse
+    {
         $dataClient = $this->request->getPost();
         $this->clientModel->save($dataClient);
         return redirect('gestion_admin');
-        
     }
 }

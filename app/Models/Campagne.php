@@ -12,7 +12,7 @@ class Campagne extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ID_CLIENT','DATE','TITRE','LIBELLE','CONTACTS'];
+    protected $allowedFields    = ['ID_CLIENT', 'DATE', 'TITRE', 'LIBELLE', 'CONTACTS'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,12 +44,39 @@ class Campagne extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findIDClient($ID_CLIENT) {
-        return $this
-        ->select('ID_CLIENT, TITRE, ID_CAMPAGNE')
-        ->where('ID_CLIENT', $ID_CLIENT)
-        ->findAll();
-    }  
+    // public function deleteCampaignsByClientId($clientId) {
+    //     return $this
+    //     ->where('ID_CLIENT', $clientId);
+    //     return $this->db->delete('campagne');
+    // }
 
-    
+    public function deleteCampaignsAndQuestionsByClientId($clientId)
+    {
+
+
+        // Récupérer les IDs des campagnes
+        $campagne_ids = $this->select('ID_CAMPAGNE')
+        ->where('ID_CLIENT', $clientId)->findAll();
+        $campagnes = $this->get('campagne')->result();
+
+
+        // Supprimer les questions associées
+        foreach ($campagne_ids as $campagne) {
+            var_dump($campagne);
+            $this ->where('ID_CAMPAGNE', $campagne);
+            $this ->delete('question');
+        }
+
+        // Supprimer les campagnes
+        return $this->delete('campagne', 'ID_CLIENT', $clientId);
+    }
+
+
+    public function findIDClient($ID_CLIENT)
+    {
+        return $this
+            ->select('ID_CLIENT, TITRE, ID_CAMPAGNE')
+            ->where('ID_CLIENT', $ID_CLIENT)
+            ->findAll();
+    }
 }
