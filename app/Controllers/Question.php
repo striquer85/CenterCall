@@ -41,7 +41,7 @@ class Question extends BaseController
         $question = $this->request->getPost();
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $this->questionModel->insert($question);
-        return redirect()->to("gestion-question/$idCampagne");
+        return redirect()->to("creation-question/$idCampagne");
     }
     public function modif($idQuestion): string
     {
