@@ -50,4 +50,6 @@ class Campagne extends Model
         ->where('ID_CLIENT', $ID_CLIENT)
         ->findAll();
     }  
+
+    
 }

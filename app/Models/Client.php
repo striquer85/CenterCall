@@ -12,7 +12,7 @@ class Client extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['ID_UTILISATEUR','RAISON_SOCIALE','NOM','PRENOM','EMAIL','TELEPHONE','ADRESSE','CODE_POSTAL','VILLE'];
+    protected $allowedFields    = ['ID_UTILISATEUR', 'RAISON_SOCIALE', 'NOM', 'PRENOM', 'EMAIL', 'TELEPHONE', 'ADRESSE', 'CODE_POSTAL', 'VILLE'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,10 +44,26 @@ class Client extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findJoinAll()
-    {
-        return $this->select(', , , ')
-        ->join('', '')
-        ->findAll() ;
-    }
+
+
+    //     public function deleteClientWithCampaigns($clientId) {
+           
+    
+    //         // Suppression des questions liées aux campagnes du client
+    //         $this->db->query("
+    //             DELETE FROM question 
+    //             WHERE ID_CAMPAGNE IN (
+    //                 SELECT ID_CAMPAGNE FROM campagne WHERE ID_CLIENT = ?
+    //             )", [$clientId]);
+    
+    //         // Suppression des campagnes du client
+    //         $this->db->delete('campagne', ['ID_CLIENT' => $clientId]);
+    
+    //         // Suppression du client
+    //         $this->db->delete('client', ['ID_CLIENT' => $clientId]);
+    
+
+        
+    // }
+    
 }
