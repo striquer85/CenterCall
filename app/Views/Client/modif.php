@@ -20,9 +20,16 @@
     <input type="text" id="CODE_POSTAL" name="CODE_POSTAL"  value="<?=$client['CODE_POSTAL'] ?>"require><br><br>
     <label> VILLE </label> <br>
     <input type="text" id="VILLE" name="VILLE" value="<?=$client['VILLE'] ?>" require><br><br>
+
   
     <input type="submit" value="Valider">
-
+ <!-- <?php  
+    echo '<a href="' . url_to('gestion_campagnes', $client['ID_CLIENT']) . '"<button class ="button">voir campagne </button></a>';
+    ?> -->
 </form>
+
+
+
+
 
 <?= $this->endSection()?>
