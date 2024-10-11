@@ -41,10 +41,11 @@ class Campagne extends BaseController
 
     public function create()
     {
-        $idClient = $this->request->getPost('ID_CLIENT');
         $data = $this->request->getPost();
         $this->campagnetModel->insert($data);
-        return redirect()->to("gestion-campagnes/$idClient");
+        $idCampagne = $this->campagnetModel->getInsertID();
+    
+        return redirect()->to("creation-question/$idCampagne");
     }
 
     public function modif($ID_CAMPAGNE): string
