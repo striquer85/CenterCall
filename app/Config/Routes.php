@@ -45,4 +45,4 @@ $routes->get('modif-client/(:num)', 'Client::modif/$1', ['as' => 'modif_client_g
 $routes->post('modif-client', 'Client::update', ['as' => 'modif_client_post']);
 
 $routes->get('suppr-client-(:num)', 'Client::delete/$1', ['as' => 'suppr_client']);
-$routes->post('delete-update', 'Client::delete_update/$1', ['as' => 'delete_update']);
+$routes->post('delete-update', 'Client::delete_update', ['as' => 'delete_update']);
