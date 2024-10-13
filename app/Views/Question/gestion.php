@@ -1,12 +1,13 @@
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
 <h1 id="titreMenu">Gestion Questions</h1>
-<br><br>
+<div class="campagne-info">
+    <p class="campagne-titre"><?= $campagne['TITRE'] ?></p>
+    <p class="campagne-date"><?= $campagne['DATE'] ?></p>
+    <p class="campagne-libelle"><?= $campagne['LIBELLE'] ?></p>
+</div>
 <a class="button" href="<?= url_to('creation_question_get', $campagne['ID_CAMPAGNE']) ?>">Nouvelle question</a>
 
-<p><?= $campagne['TITRE'] ?></p>
-<p><?= $campagne['DATE'] ?></p>
-<p><?= $campagne['LIBELLE'] ?></p>
 
 <?php
 $table = new \CodeIgniter\View\Table();

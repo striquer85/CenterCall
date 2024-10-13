@@ -3,7 +3,7 @@
 <h1 id="titreMenu">Modification Campagne</h1>
 
 
-<form method="post" action="<?= url_to('modif_campagne_post') ?>">
+<form method="post" action="<?= url_to('modif_campagne_post') ?>" enctype="multipart/form-data">
     <h2>Modification de la campagne</h2>
 
 
@@ -12,21 +12,23 @@
 
     <label for="name">Titre de la campagne :</label>
 
-    <input type="text" id="TITRE" name="TITRE" required value="<?= $campagne['TITRE'] ?>" 
-    minlength="3" maxlength="25" size="18">
+    <input type="text" id="TITRE" name="TITRE" required value="<?= $campagne['TITRE'] ?>" minlength="3" maxlength="25"
+        size="18">
 
 
     <label for="uname">Texte descriptif :</label>
-    <input type="text" id="LIBELLE" name="LIBELLE" placeholder="Tapez votre descriptif : " value="<?= $campagne['LIBELLE'] ?>" 
-    minlength="3" maxlength="100" size="18">
+    <input type="text" id="LIBELLE" name="LIBELLE" placeholder="Tapez votre descriptif : "
+        value="<?= $campagne['LIBELLE'] ?>" minlength="3" maxlength="100" size="18">
 
     <label for="start">Date :</label>
 
-    <input type="date" id="DATE" name="DATE" value="<?= $campagne['DATE'] ?>"  min="2024-01-01" max="2026-12-31" />
-    
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="monFichier">
-        <input type="submit" value="Valider">
-    </form>
+    <input type="date" id="DATE" name="DATE" value="<?= $campagne['DATE'] ?>" min="<?= date('Y-m-d') ?>"
+        max="2026-12-31" />
 
-    <?= $this->endSection() ?>
+    <label for="CONTACTS">Contacts</label>
+    <input type="file" name="CONTACTS" id="CONTACTS">
+
+    <input type="submit" value="Valider">
+</form>
+
+<?= $this->endSection() ?>
