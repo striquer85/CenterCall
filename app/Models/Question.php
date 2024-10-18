@@ -58,6 +58,6 @@ class Question extends Model
     {
         $this
             ->where('ID_CAMPAGNE', $ID_CAMPAGNE)
-            ->delete('question');
+            ->delete('QUESTION');
     }
 }
