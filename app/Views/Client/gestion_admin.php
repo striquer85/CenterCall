@@ -20,7 +20,10 @@ foreach ($listeClients as $client) {
         $client['CODE_POSTAL'],
         $client['VILLE'],
         '<a href="' . url_to('modif_client_get', $client['ID_CLIENT']) . '"<button class ="button">Modifier</button></a>',
-        '<a href="' . url_to('suppr_client', $client['ID_CLIENT']) . '"<button class ="button">suprimer</button></a>',
+        '<form class="form-suppression" action="' . url_to('suppr_client', $client['ID_CLIENT']) . '" method="post">
+        <input type="hidden" name="ID_QUESTION" value="' . $client['ID_CLIENT'] . '">        
+        <button type="submit" class="button">Supprimer</button>
+    </form>',
         '<a href="' . url_to('gestion_campagnes', $client['ID_CLIENT']) . '"<button class ="button">voir campagne </button></a>'
 
     );
@@ -32,4 +35,3 @@ echo $table->generate();
 
 
 <?= $this->endSection() ?>
-

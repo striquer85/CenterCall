@@ -44,11 +44,7 @@ class Campagne extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    // public function deleteCampaignsByClientId($clientId) {
-    //     return $this
-    //     ->where('ID_CLIENT', $clientId);
-    //     return $this->db->delete('campagne');
-    // }
+
 
     public function deleteCampaignsAndQuestionsByClientId($clientId)
     {
@@ -56,15 +52,15 @@ class Campagne extends Model
 
         // Récupérer les IDs des campagnes
         $campagne_ids = $this->select('ID_CAMPAGNE')
-        ->where('ID_CLIENT', $clientId)->findAll();
+            ->where('ID_CLIENT', $clientId)->findAll();
         $campagnes = $this->get('campagne')->result();
 
 
         // Supprimer les questions associées
         foreach ($campagne_ids as $campagne) {
             var_dump($campagne);
-            $this ->where('ID_CAMPAGNE', $campagne);
-            $this ->delete('question');
+            $this->where('ID_CAMPAGNE', $campagne);
+            $this->delete('question');
         }
 
         // Supprimer les campagnes
@@ -78,5 +74,18 @@ class Campagne extends Model
             ->select('ID_CLIENT, TITRE, ID_CAMPAGNE')
             ->where('ID_CLIENT', $ID_CLIENT)
             ->findAll();
+    }
+
+    public function get_campagnes_by_client($ID_CLIENT)
+    {
+        return $this->where('ID_CLIENT', $ID_CLIENT)
+            ->findAll();
+    }
+
+    public function delete_campagnes_by_client($ID_CLIENT)
+    {
+        $this
+            ->where('ID_CLIENT', $ID_CLIENT)
+            ->delete('campagne');
     }
 }

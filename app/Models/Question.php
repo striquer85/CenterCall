@@ -54,9 +54,10 @@ class Question extends Model
 
 
 
-    // public function deleteQuestionsByCampaignId($campaignId)
-    // {
-    //     $this->where('ID_CAMPAGNE', $campaignId);
-    //     return $this->db->delete('question');
-    // }
+    public function delete_questions_by_campagnes($ID_CAMPAGNE)
+    {
+        $this
+            ->where('ID_CAMPAGNE', $ID_CAMPAGNE)
+            ->delete('question');
+    }
 }
