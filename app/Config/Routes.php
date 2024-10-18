@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Campagne::index', ['as' => 'accueil']);
 
+$routes->get('connexion', 'Campagne::connexion', ['as' => 'connexion_get']);
+$routes->post('identification', 'Campagne::identification', ['as' => 'connexion_post']);
 // route v1 
 
 $routes->get('gestion-campagnes/(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);

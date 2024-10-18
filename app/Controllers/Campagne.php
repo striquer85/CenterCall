@@ -19,6 +19,10 @@ class Campagne extends BaseController
     {
         return view('accueil');
     }
+    public function connexion(): string
+    {
+        return view('connexion');
+    }
     public function dashboard($ID_CLIENT): string
     {
 
