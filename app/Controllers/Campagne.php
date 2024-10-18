@@ -43,8 +43,26 @@ class Campagne extends BaseController
     {
         $data = $this->request->getPost();
         $this->campagnetModel->insert($data);
-        return redirect()->to("gestion-campagnes/$idClient");
+        $idCampagne = $this->campagnetModel->getInsertID();
+
+        $csvFile = $this->request->getFile('CONTACTS');
+        $lignes = [];
+   
+        if ($csvFile->isValid()) {
+            if (($handle = fopen($csvFile->getTempName(), "r")) !== FALSE) {
+                while (($email = fgets($handle, 1000)) !== FALSE) {
+                    $lignes[] = $email;
+                }
+                fclose($handle);
+            }
+        }
+
+        $emailListe = implode(';', $lignes);
+        $this->campagnetModel->insertContacts($idCampagne,$emailListe);
+
+        return redirect()->to("creation-question/$idCampagne");
     }
+
 
     public function modif($ID_CAMPAGNE): string
     {
@@ -55,12 +73,25 @@ class Campagne extends BaseController
 
     public function update()
     {
-        $idClient = $this->request->getPost('ID_CLIENT');
-        //$idCampagne = $this->request->getPost('ID_CAMPAGNE');
+
+        $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $data = $this->request->getPost();
 
         $this->campagnetModel->save($data);
-        //return redirect()->to("gestion-question/$idCampagne");
-        return redirect()->to("gestion-campagnes/$idClient");
+        $csvFile = $this->request->getFile('CONTACTS');
+        $lignes = [];
+   
+        if ($csvFile->isValid()) {
+            if (($handle = fopen($csvFile->getTempName(), "r")) !== FALSE) {
+                while (($email = fgets($handle, 1000)) !== FALSE) {
+                    $lignes[] = $email;
+                }
+                fclose($handle);
+            }
+        }
+
+        $emailListe = implode(';', $lignes);
+        $this->campagnetModel->insertContacts($idCampagne,$emailListe);
+        return redirect()->to("gestion-question/$idCampagne");
     }
 }

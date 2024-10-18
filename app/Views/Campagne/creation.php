@@ -5,7 +5,7 @@
 
 
 
-<form method="post" action="<?= url_to('creation_campagne_post') ?>">
+<form method="post" action="<?= url_to('creation_campagne_post') ?>" enctype="multipart/form-data">
     <h2>Création de la campagne</h2>
 
     <input type="hidden" id="ID_CLIENT" name="ID_CLIENT" value="<?= $idClient['ID_CLIENT'] ?>" />
@@ -27,10 +27,7 @@
     <label for="CONTACTS">Contacts</label>
     <input type="file" name="CONTACTS" id="CONTACTS">
 
-    <input type="date" id="DATE" name="DATE" value="0000-00-00" min="2024-01-01" max="2026-12-31" />
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="monFichier">
-        <input type="submit" value="Valider">
+    <input type="submit" value="Valider">
     </form>
 
 
