@@ -79,23 +79,4 @@ class Campagne extends Model
             ->where('ID_CLIENT', $ID_CLIENT)
             ->findAll();
     }
-    public function insertContacts($idCampagne, $emailListe)
-    {
-        return $this
-            ->set('CONTACTS', $emailListe)
-            ->where('ID_CAMPAGNE', $idCampagne)
-            ->update();
-    }
-    public function get_campagnes_by_client($ID_CLIENT)
-    {
-        return $this->where('ID_CLIENT', $ID_CLIENT)
-            ->findAll();
-    }
-
-    public function delete_campagnes_by_client($ID_CLIENT)
-    {
-        $this
-            ->where('ID_CLIENT', $ID_CLIENT)
-            ->delete('campagne');
-    }
 }
