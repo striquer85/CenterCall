@@ -41,29 +41,8 @@ class Campagne extends BaseController
 
     public function create()
     {
-        $idClient = $this->request->getPost('ID_CLIENT');
         $data = $this->request->getPost();
-        
-         //var_dump($data);
-        if($_FILES['CONTACTS']) // vérifie si un fichier a été téléchargé et si le champ monFichier est rempli
-        {
-            $contenu = file_get_contents($_FILES['CONTACTS']['tmp_name']); //récupère le contenu du fichier
-            system("unlink '".$_FILES['CONTACTS']['tmp_name']."'"); // supprime le fichier temporaire grace à "unlink"
-            $tableau = explode('
-', $contenu); // prend le contenu du fichier et le divise en un tableau (!! garder le retour à la ligne)
-            foreach ($tableau as $ligne) {
-                if ($ligne != "")
-                {
-                    $contact = explode(';', $ligne);
-                    echo("<pre>");
-                    print_r($contact);
-                    echo("</pre>");
-                    
-                }
-            }
-            //die();
-            $this->campagnetModel->insert($data);
-        }
+        $this->campagnetModel->insert($data);
         return redirect()->to("gestion-campagnes/$idClient");
     }
 

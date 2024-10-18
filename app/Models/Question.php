@@ -51,4 +51,12 @@ class Question extends Model
             ->where('ID_CAMPAGNE =', $idCampagne)
             ->findAll();
     }
+
+
+
+    // public function deleteQuestionsByCampaignId($campaignId)
+    // {
+    //     $this->where('ID_CAMPAGNE', $campaignId);
+    //     return $this->db->delete('question');
+    // }
 }
