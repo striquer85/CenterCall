@@ -1,34 +1,26 @@
-<?= $this->extend('Layout') ?>
+<?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<h1 id="titreMenu">Gestion Campagnes</h1>
-<br>
-<br>
-<a href="<?= url_to('creation_campagne_get', $client['ID_CLIENT']) ?>"><button class="button" type="button">Nouvelle Campagne</button></a>
-<br>
-<br>
-
+<div class="titre-container">
+    <h1 class="titreMenu">Gestion Campagnes</h1>
+</div>
+<div class="button-container">
+    <a class="button button-ajout" href="<?= url_to('creation_campagne_get', $client['ID_CLIENT']) ?>">Nouvelle
+        Campagne</a>
+</div>
 <?php
-
-use Config\View;
-
 $table = new \CodeIgniter\View\Table();
-
-// tableau des campagnes 
-
-$table->setHeading(['Titre_Campagne', 'Voir_Campagne', 'Modifier']);
+$table->setHeading(['Titre Campagne', 'Voir Campagne', 'Modifier']);
 
 foreach ($listeCampagnes as $campagne) {
 
     $table->addRow(
         $campagne['TITRE'],
-         '<a><button class="button">Voir</button></a>',
-        '<a href="' . url_to('modif_campagne_get', $campagne['ID_CAMPAGNE']) . '"><button class="button">Modifier</button></a>'
-       
-
+        '<a><button class="button button-voir-campagne">Voir</button></a>',
+        '<a href="' . url_to('modif_campagne_get', $campagne['ID_CAMPAGNE']) . '"><button class="button button-modifier">Modifier</button></a>'
     );
 }
+echo '<div class="table-container">';
 echo $table->generate();
+echo '</div>';
 ?>
-
-
 <?= $this->endSection() ?>

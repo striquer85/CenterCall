@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class Campagne extends Model
 {
-    protected $table            = 'campagne';
-    protected $primaryKey       = 'ID_CAMPAGNE';
+    protected $table = 'campagne';
+    protected $primaryKey = 'ID_CAMPAGNE';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = ['ID_CLIENT', 'DATE', 'TITRE', 'LIBELLE', 'CONTACTS'];
+    protected $returnType = 'array';
+    protected $useSoftDeletes = false;
+    protected $protectFields = true;
+    protected $allowedFields = ['ID_CLIENT', 'DATE', 'TITRE', 'LIBELLE', 'CONTACTS'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -22,27 +22,27 @@ class Campagne extends Model
 
     // Dates
     protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation = false;
     protected $cleanValidationRules = true;
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeFind = [];
+    protected $afterFind = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
 
     // public function deleteCampaignsByClientId($clientId) {
     //     return $this
@@ -78,5 +78,12 @@ class Campagne extends Model
             ->select('ID_CLIENT, TITRE, ID_CAMPAGNE')
             ->where('ID_CLIENT', $ID_CLIENT)
             ->findAll();
+    }
+    public function insertContacts($idCampagne, $emailListe)
+    {
+        return $this
+            ->set('CONTACTS', $emailListe)
+            ->where('ID_CAMPAGNE', $idCampagne)
+            ->update();
     }
 }

@@ -7,12 +7,12 @@ use CodeIgniter\HTTP\RedirectResponse;
 class Campagne extends BaseController
 {
 
-    private  $campagnetModel;
-    private  $clientModel;
+    private $campagneModel;
+    private $clientModel;
 
     public function __construct()
     {
-        $this->campagnetModel = model('Campagne');
+        $this->campagneModel = model('Campagne');
         $this->clientModel = model('Client');
     }
     public function index(): string
@@ -28,7 +28,7 @@ class Campagne extends BaseController
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
-        $campagne = $this->campagnetModel->findIdClient($ID_CLIENT);
+        $campagne = $this->campagneModel->findIdClient($ID_CLIENT);
         $idClient = $this->clientModel->find($ID_CLIENT);
 
         return view('Campagne/gestion', [
@@ -46,12 +46,12 @@ class Campagne extends BaseController
     public function create()
     {
         $data = $this->request->getPost();
-        $this->campagnetModel->insert($data);
-        $idCampagne = $this->campagnetModel->getInsertID();
+        $this->campagneModel->insert($data);
+        $idCampagne = $this->campagneModel->getInsertID();
 
         $csvFile = $this->request->getFile('CONTACTS');
         $lignes = [];
-   
+
         if ($csvFile->isValid()) {
             if (($handle = fopen($csvFile->getTempName(), "r")) !== FALSE) {
                 while (($email = fgets($handle, 1000)) !== FALSE) {
@@ -62,7 +62,7 @@ class Campagne extends BaseController
         }
 
         $emailListe = implode(';', $lignes);
-        $this->campagnetModel->insertContacts($idCampagne,$emailListe);
+        $this->campagneModel->insertContacts($idCampagne, $emailListe);
 
         return redirect()->to("creation-question/$idCampagne");
     }
@@ -70,21 +70,20 @@ class Campagne extends BaseController
 
     public function modif($ID_CAMPAGNE): string
     {
-        $campagne = $this->campagnetModel->find($ID_CAMPAGNE);
+        $campagne = $this->campagneModel->find($ID_CAMPAGNE);
 
         return view('Campagne/modif', ['campagne' => $campagne]);
     }
 
     public function update()
     {
-
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $data = $this->request->getPost();
 
-        $this->campagnetModel->save($data);
+        $this->campagneModel->save($data);
         $csvFile = $this->request->getFile('CONTACTS');
         $lignes = [];
-   
+
         if ($csvFile->isValid()) {
             if (($handle = fopen($csvFile->getTempName(), "r")) !== FALSE) {
                 while (($email = fgets($handle, 1000)) !== FALSE) {
@@ -94,8 +93,10 @@ class Campagne extends BaseController
             }
         }
 
-        $emailListe = implode(';', $lignes);
-        $this->campagnetModel->insertContacts($idCampagne,$emailListe);
+        if (!empty($lignes)) {
+            $emailListe = implode(';', $lignes);
+            $this->campagneModel->insertContacts($idCampagne, $emailListe);
+        }
         return redirect()->to("gestion-question/$idCampagne");
     }
 }

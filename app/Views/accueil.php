@@ -2,7 +2,9 @@
 
 <?= $this->section('contenu') ?>
 
-<h1 id="titreMenu">CenterCall</h1>
+<div class="titre-container">
+    <h1 class="titreMenu">CenterCall</h1>
+</div>
 
 
 
