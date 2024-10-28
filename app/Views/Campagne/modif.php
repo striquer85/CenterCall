@@ -14,10 +14,9 @@
     <input type="text" id="TITRE" name="TITRE" required value="<?= $campagne['TITRE'] ?>" minlength="3" maxlength="25"
         size="18">
 
-
-    <label class="required" for="uname">Texte descriptif</label>
-    <input type="text" id="LIBELLE" name="LIBELLE" placeholder="Tapez votre descriptif : "
-        value="<?= $campagne['LIBELLE'] ?>" minlength="3" maxlength="100" size="18">
+    <label class="required" for="LIBELLE">Texte descriptif</label>
+    <textarea id="LIBELLE" name="LIBELLE" minlength="3" maxlength="255" size="255"
+        required><?= $campagne['LIBELLE'] ?></textarea>
 
     <label class="required" for="start">Date</label>
 
@@ -25,12 +24,12 @@
         max="2026-12-31" />
 
     <label for="CONTACTS">Contacts</label>
+    <p class="file-accept">Veuillez télécharger un fichier au format CSV.</p>
     <label class="custom-file-upload">
-        <input type="file" name="CONTACTS" id="CONTACTS">
+        <input type="file" name="CONTACTS" accept=".csv" id="CONTACTS">
         Choisir un fichier
     </label>
-
-    <input type="submit" value="Valider">
+    <input type="submit" value="Suivant">
 </form>
 
 <?= $this->endSection() ?>

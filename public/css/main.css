@@ -9,7 +9,7 @@ table {
 }
 
 table thead th {
-    background-color: #1e3c72;
+    background-color: #285ea8;
     color: #ffffff;
     font-weight: bold;
     border: 1px solid #1e3c72;
@@ -18,7 +18,7 @@ table thead th {
 }
 
 table tbody td {
-    color: #c0c0c0;
+    color: #d0d0d0;
     border: 1px solid #2e2e2e;
     padding: 15px;
     background-color: rgba(50, 50, 70, 0.8);
@@ -40,12 +40,17 @@ table tbody tr:hover {
 }
 
 .table-container {
+    overflow: auto;
+    margin: 20px 0;
+}
+
+.table-container table {
     overflow: hidden;
 }
 
 .client-table-container {
     margin: 20px 0;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .client-table-container table {
@@ -56,7 +61,6 @@ table tbody tr:hover {
 .client-table-container th,
 .client-table-container td {
     padding: 1px;
-    border: 1px solid #3a3a3a;
 }
 
 html,
@@ -74,6 +78,8 @@ body {
 
 .content {
     flex: 1;
+    background: linear-gradient(135deg, #222, #444);
+    padding-bottom: 30px;
 }
 
 .titre-container {
@@ -95,8 +101,6 @@ body {
 }
 
 .titreMenu:hover {
-    color: #ffffff;
-    border-bottom-color: #555;
     transform: scale(1.05);
 }
 
@@ -113,13 +117,6 @@ body {
     box-shadow: none;
     border: none;
 }
-
-@media screen and (min-width: 480px) {
-    form {
-        max-width: 480px;
-    }
-}
-
 .campagne-info {
     display: flex;
     justify-content: space-around;
@@ -205,7 +202,6 @@ body {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
 }
 
-
 .button-supprimer:hover {
     background: #c62828;
 }
@@ -240,6 +236,33 @@ form {
     color: #e0e0e0;
 }
 
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 700px;
+    padding: 20px;
+}
+
+.form-client {
+    flex: 1;
+    min-width: 45%;
+}
+@media screen and (min-width: 480px) {
+    form {
+        max-width: 480px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .titreMenu {
+        font-size: 2em;
+    }
+    .button-ajout {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+}
+
 label {
     font-size: 1.2em;
     color: #e0e0e0;
@@ -251,6 +274,18 @@ label {
 label.required:after {
     content: " *";
     color: red;
+}
+
+textarea {
+    font-size: 1.1em;
+    resize: vertical;
+    height: 80px;
+    overflow: hidden;
+}
+
+.textarea-question {
+    font-size: 1.3em;
+    height: 80px;
 }
 
 input[type="text"],
@@ -285,6 +320,10 @@ input[type="submit"] {
     margin: 10px auto;
 }
 
+.submit-client {
+    max-width: 200px;
+}
+
 input[type="submit"]:hover {
     background: linear-gradient(135deg, #004494, #000e5a);
     transform: scale(1.05);
@@ -307,8 +346,20 @@ input[type="file"] {
     transition: background-color 0.3s, transform 0.3s;
 }
 
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #00aaff;
+    outline: none;
+}
+
 .custom-file-upload:hover {
     background-color: #555;
+}
+
+.file-accept {
+    color: #99aab5;
+    font-size: 0.9em;
 }
 
 footer {
@@ -320,13 +371,8 @@ footer {
     border-top: 3px solid #333;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     margin: 0;
-    margin-top: 20px;
+    margin-top: 0px;
     transition: color 0.3s, border-color 0.3s, transform 0.3s;
-}
-
-footer:hover {
-    color: #ffffff;
-    border-top-color: #555;
 }
 
 .footer-content {

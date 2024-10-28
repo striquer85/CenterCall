@@ -5,7 +5,8 @@
 </div>
 <form method="post" action="<?= url_to('creation_question_post') ?>">
     <label class="required" for="QUESTION">Question</label>
-    <input type="text" id="QUESTION" name="QUESTION" placeholder="Posez votre question ici" required>
+    <textarea class="textarea-question" id="QUESTION" name="QUESTION" required
+        placeholder="Posez votre question ici"></textarea>
     <input type="hidden" id="ID_CAMPAGNE" name="ID_CAMPAGNE" value="<?= $idCampagne['ID_CAMPAGNE'] ?>">
 
     <input type="submit" value="Suivant">
