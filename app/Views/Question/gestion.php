@@ -25,7 +25,8 @@ foreach ($questions as $question) {
         '<form class="form-suppression" action="' . url_to('suppr_question') . '" method="post">
             <input type="hidden" name="ID_QUESTION" value="' . $question['ID_QUESTION'] . '">
             <input type="hidden" name="ID_CAMPAGNE" value="' . $question['ID_CAMPAGNE'] . '">
-            <button type="submit" class="button button-supprimer">Supprimer</button>
+            <button type="submit" class="button button-supprimer" 
+            onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer cette question ?\')">Supprimer</button>
         </form>'
     );
 }

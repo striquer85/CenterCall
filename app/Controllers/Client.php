@@ -8,14 +8,14 @@ use CodeIgniter\Database\Exceptions\DatabaseException;
 class Client extends BaseController
 {
     private $clientModel;
-    private $campagneModel; // Corrected variable name
+    private $campagneModel;
     private $questionModel;
     private $db;
 
     public function __construct()
     {
         $this->clientModel = model('Client');
-        $this->campagneModel = model('Campagne'); // Corrected variable name
+        $this->campagneModel = model('Campagne');
         $this->questionModel = model('Question');
         $this->db = db_connect();
     }
@@ -35,67 +35,41 @@ class Client extends BaseController
     {
         $data = $this->request->getPost();
         $this->clientModel->insert($data);
-        return redirect('gestion_admin'); // Use `redirect()->to()`
+        return redirect()->to('gestion-clients');
     }
 
-    public function modif($ID_CLIENT): string
+    public function modif($idClient): string
     {
-        $client_modif = $this->clientModel->find($ID_CLIENT);
-        return view('Client/modif', ['client' => $client_modif]); // Use forward slashes
+        $client_modif = $this->clientModel->find($idClient);
+        return view('Client/modif', ['client' => $client_modif]);
     }
 
     public function update(): RedirectResponse
     {
         $dataClient = $this->request->getPost();
         $this->clientModel->save($dataClient);
-        return redirect('gestion_admin'); // Use `redirect()->to()`
+        return redirect()->to('gestion-clients');
     }
 
-    public function delete($id_client): RedirectResponse
+    public function delete($idClient): RedirectResponse
     {
-        // Démarrer une transaction
         $this->db->transStart();
 
-
-        // Supprimer les questions associées aux campagnes du client
-        $campagnesId = $this->campagneModel->get_campagnes_by_client($id_client);
-        if ($campagnesId) {
-            $idstmp = array_column($campagnesId, 'ID_CAMPAGNE');
-
-            $i = 0;
-            $str2 = "";
-            while (ISSET($idstmp[$i]))
-            {
-                $this->questionModel->delete_questions_by_campagnes($idstmp[$i]);
-                $str2 .=$idstmp[$i].";";
-                $i++;
+        $idCampagne = $this->campagneModel->get_campagnes_by_client($idClient);
+        if ($idCampagne) {
+            foreach ($idCampagne as $campagne) {
+                $this->questionModel->delete_questions_by_campagnes($campagne['ID_CAMPAGNE']);
             }
-            // Supprimer les campagnes du client
-            $i = 0;
-            $str = "";
-            while (ISSET($idstmp[$i]))
-            {
-                $this->campagneModel->delete_campagnes_by_client($idstmp[$i]);
-                $str .= $idstmp[$i].";";
-                $i++;
-            }
-            die("str campagnes : ".$str."<br />str questions : ".$str2);
+            $this->campagneModel->delete_campagnes_by_client($idClient);
         }
 
-        // Supprimer le client
-        $this->clientModel->delete($id_client);
-
-        // Valider la transaction
+        $this->clientModel->delete($idClient);
 
         $this->db->transComplete();
 
-        if ($this->db->transStatus() === FALSE) {
-            // Gérer l'erreur
-            echo "Erreur lors de la suppression.";
-        } else {
-            echo "Client et données associées supprimés avec succès.";
+        if ($this->db->transStatus() === false) {
+            throw new DatabaseException("Erreur lors de la suppression.");
         }
-
-        return redirect('gestion_admin');
+        return redirect()->to('gestion-clients');
     }
 }

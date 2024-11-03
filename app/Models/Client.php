@@ -43,12 +43,4 @@ class Client extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-  
-    public function delete_client($id_client) {
-        $this->where('ID_CLIENT', $id_client);
-        $this->delete('client');
-    }
-
-
 }

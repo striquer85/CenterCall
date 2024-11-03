@@ -52,12 +52,10 @@ class Question extends Model
             ->findAll();
     }
 
-
-
-    public function delete_questions_by_campagnes($ID_CAMPAGNE)
+    public function delete_questions_by_campagnes($idCampagne)
     {
-        $this
-            ->where('ID_CAMPAGNE', $ID_CAMPAGNE)
-            ->delete('QUESTION');
+        return $this
+            ->where('ID_CAMPAGNE', $idCampagne)
+            ->delete();
     }
 }
