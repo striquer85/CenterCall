@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Controllers;
+
+use CodeIgniter\HTTP\RedirectResponse;
+use CodeIgniter\Database\Exceptions\DatabaseException;
+
+class Client extends BaseController
+{
+    private $clientModel;
+    private $campagneModel;
+    private $questionModel;
+    private $db;
+
+    public function __construct()
+    {
+        $this->clientModel = model('Client');
+        $this->campagneModel = model('Campagne');
+        $this->questionModel = model('Question');
+        $this->db = db_connect();
+    }
+
+    public function gestionclient(): string
+    {
+        $client = $this->clientModel->findAll();
+        return view('Client/gestion_admin', ['listeClients' => $client]);
+    }
+
+    public function ajout(): string
+    {
+        return view('Client/creation');
+    }
+
+    public function create(): RedirectResponse
+    {
+        $data = $this->request->getPost();
+        $this->clientModel->insert($data);
+        return redirect()->to('gestion-clients');
+    }
+
+    public function modif($idClient): string
+    {
+        $client_modif = $this->clientModel->find($idClient);
+        return view('Client/modif', ['client' => $client_modif]);
+    }
+
+    public function update(): RedirectResponse
+    {
+        $dataClient = $this->request->getPost();
+        $this->clientModel->save($dataClient);
+        return redirect()->to('gestion-clients');
+    }
+
+    public function delete($idClient): RedirectResponse
+    {
+        $this->db->transStart();
+
+        $idCampagne = $this->campagneModel->get_campagnes_by_client($idClient);
+        if ($idCampagne) {
+            foreach ($idCampagne as $campagne) {
+                $this->questionModel->delete_questions_by_campagnes($campagne['ID_CAMPAGNE']);
+            }
+            $this->campagneModel->delete_campagnes_by_client($idClient);
+        }
+
+        $this->clientModel->delete($idClient);
+
+        $this->db->transComplete();
+
+        if ($this->db->transStatus() === false) {
+            throw new DatabaseException("Erreur lors de la suppression.");
+        }
+        return redirect()->to('gestion-clients');
+    }
+}
