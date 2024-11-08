@@ -6,6 +6,9 @@
 </div>
 <form method="post" action="<?= url_to('creation-client_post') ?>" class="form-container">
     <div class="form-client">
+
+
+
         <label class="required" for="RAISON_SOCIALE">Raison Sociale</label>
         <input type="text" id="RAISON_SOCIALE" name="RAISON_SOCIALE" placeholder="Ex: Entreprise XYZ" required>
 
