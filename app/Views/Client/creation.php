@@ -6,6 +6,17 @@
 </div>
 <form method="post" action="<?= url_to('creation-client_post') ?>" class="form-container">
     <div class="form-client">
+
+    <select name="USER" id="">utilisateur </select>
+        <option value="">ajouté  un utilisateur </option>
+        <?php
+
+        foreach ($listeUser as $user){
+              echo "<option value='<?= $user['ID_USER']?>'  '<?= $user['NOM_USER']?>' '<?= $user['PRENOM_USER']?>'>" ;
+        } 
+      
+         ?>
+        
         <label class="required" for="RAISON_SOCIALE">Raison Sociale</label>
         <input type="text" id="RAISON_SOCIALE" name="RAISON_SOCIALE" placeholder="Ex: Entreprise XYZ" required>
 
