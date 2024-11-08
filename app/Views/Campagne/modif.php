@@ -3,7 +3,6 @@
 <div class="titre-container">
     <h1 class="titreMenu">Modification Campagne</h1>
 </div>
-<h1>Test</h1>
 <form method="post" action="<?= url_to('modif_campagne_post') ?>" enctype="multipart/form-data">
 
     <input type="hidden" id="ID_CAMPAGNE" name="ID_CAMPAGNE" value="<?= $campagne['ID_CAMPAGNE'] ?>" />
