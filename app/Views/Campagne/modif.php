@@ -1,8 +1,6 @@
+<?php $this->setVar('titre', 'Modification Campagne'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Modification Campagne</h1>
-</div>
 
 <form method="post" action="<?= url_to('modif_campagne_post') ?>" enctype="multipart/form-data">
 

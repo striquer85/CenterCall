@@ -1,8 +1,6 @@
+<?php $this->setVar('titre', 'Création de Campagne'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Création de Campagne</h1>
-</div>
 
 <form method="post" action="<?= url_to('creation_campagne_post') ?>" enctype="multipart/form-data">
     <input type="hidden" id="ID_CLIENT" name="ID_CLIENT" value="<?= $idClient['ID_CLIENT'] ?>" />

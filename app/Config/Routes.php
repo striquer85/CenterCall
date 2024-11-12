@@ -8,14 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 service('auth')->routes($routes);
 $routes->get('/', 'Campagne::index', ['as' => 'accueil']);
 
-$routes->get('connexion', 'Campagne::connexion', ['as' => 'connexion_get']);
-$routes->post('identification', 'Campagne::identification', ['as' => 'connexion_post']);
-// route v1 
 
 $routes->get('gestion-campagnes/(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
-
-// route test 
-// $routes->get('gestion-campagnes', 'Campagne::dashboard', ['as' => 'gestion_campagnes']);
 
 // CRUD Campagne
 $routes->get('creation-campagne/(:num)', 'Campagne::ajout/$1', ['as' => 'creation_campagne_get']);
@@ -48,6 +42,3 @@ $routes->get('modif-client/(:num)', 'Client::modif/$1', ['as' => 'modif_client_g
 $routes->post('modif-client', 'Client::update', ['as' => 'modif_client_post']);
 
 $routes->post('suppr-client/(:num)', 'Client::delete/$1', ['as' => 'suppr_client']);
-
-service('auth')->routes($routes);
-///

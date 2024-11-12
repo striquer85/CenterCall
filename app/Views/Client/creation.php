@@ -1,19 +1,20 @@
+<?php $this->setVar('titre', 'Création Client'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
 
-<div class="titre-container">
-    <h1 class="titreMenu">Création Client</h1>
-</div>
 <form method="post" action="<?= url_to('creation-client_post') ?>" class="form-container">
+    <label class="required" for="ID_UTILISATEUR">Utilisateur</label>
+    <select name="ID_UTILISATEUR">
+        <option value="">Sélectionnez un utilisateur</option>
+        <?php
+        foreach ($listeUser as $user) {
+            ?>
+            <option value="<?= $user->id ?>"><?= $user->username ?></option>
+            <?php
+        }
+        ?>
+    </select>
     <div class="form-client">
-<?php 
-    foreach ($listeUser as $user){
-              echo "<option value='<?= $user['ID_USER']?>'  '<?= $user['NOM_USER']?>' '<?= $user['PRENOM_USER']?>'>;" 
-        } 
-      
-         ?>
-
-    
         <label class="required" for="RAISON_SOCIALE">Raison Sociale</label>
         <input type="text" id="RAISON_SOCIALE" name="RAISON_SOCIALE" placeholder="Ex: Entreprise XYZ" required>
 
@@ -41,6 +42,4 @@
     </div>
     <input class="submit-client" type="submit" value="Valider">
 </form>
-
-
 <?= $this->endSection() ?>

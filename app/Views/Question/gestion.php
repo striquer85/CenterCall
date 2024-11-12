@@ -1,8 +1,7 @@
+<?php $this->setVar('titre', 'Gestion Questions'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Gestion Questions</h1>
-</div>
+
 <div class="campagne-info">
     <p class="campagne-titre"><?= $campagne['TITRE'] ?></p>
     <p class="campagne-date"><?= $campagne['DATE'] ?></p>

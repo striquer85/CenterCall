@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>CenterCall</title>
-    <a href="<?= url_to('logout') ?>">Logout</a>
+    <title><?= isset($titre) ? $titre : 'CenterCall' ?></title>
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
@@ -17,8 +16,15 @@
 
 </style>
 
-<body><div class="content">
-    <?= $this->renderSection('contenu') ?>
+<body>
+    <div class="titre-container">
+        <div class="card-body">
+            <h2 class="titre-menu"><?= isset($titre) ? $titre : 'CenterCall' ?></h2>
+            <a class="button button-logout" href="<?= url_to('logout') ?>">Déconnexion</a>
+        </div>
+    </div>
+    <div class="content">
+        <?= $this->renderSection('contenu') ?>
     </div>
     <footer>
         <div class="footer-content">

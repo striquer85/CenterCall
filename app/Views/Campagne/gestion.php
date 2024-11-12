@@ -1,8 +1,7 @@
+<?php $this->setVar('titre', 'Gestion Campagnes'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Gestion Campagnes</h1>
-</div>
+
 <div class="button-container">
     <a class="button button-ajout" href="<?= url_to('creation_campagne_get', $client['ID_CLIENT']) ?>">Nouvelle
         Campagne</a>

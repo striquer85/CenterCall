@@ -1,9 +1,9 @@
+<?php $this->setVar('titre', 'Connexion'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Connexion</h1>
-</div>
-<form method="post" action="<?= url_to('connexion_post') ?>">
+
+
+<form method="post" action="">
     <label for="identifiant">Identifiant</label>
     <input type="text" placeholder="Identifiant">
     <label for="password">Mot de passe</label>

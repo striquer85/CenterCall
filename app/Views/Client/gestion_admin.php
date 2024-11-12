@@ -1,9 +1,7 @@
+
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Gestion Clients</h1>
-</div>
-
+<?php $this->setVar('titre', 'Gestion Clients'); ?>
 <div class="button-container">
     <a class="button button-ajout" href="<?= url_to('creation-client_get') ?>">Nouveau Client</a>
 </div>

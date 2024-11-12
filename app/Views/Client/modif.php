@@ -1,11 +1,21 @@
+<?php $this->setVar('titre', 'Modification Client'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Modification Client</h1>
-</div>
+
 
 <form method="post" action="<?= url_to('modif_client_post') ?>" class="form-container">
     <input type="hidden" id="ID_CLIENT" name="ID_CLIENT" value="<?= $client["ID_CLIENT"] ?>">
+    <label class="required" for="ID_UTILISATEUR">Utilisateur</label>
+    <select name="ID_UTILISATEUR">
+        <option value="">Sélectionnez un utilisateur</option>
+        <?php
+        foreach ($listeUser as $user) {
+            ?>
+            <option value="<?= $user->id ?>"><?= $user->username ?></option>
+            <?php
+        }
+        ?>
+    </select>
     <div class="form-client">
         <label class="required">Raison Sociale</label>
         <input type="text" id="RAISON_SOCIALE" name="RAISON_SOCIALE" value="<?= $client['RAISON_SOCIALE'] ?>" required>
@@ -35,9 +45,6 @@
     </div>
 
     <input class="submit-client" type="submit" value="Valider">
-    <!-- <?php
-    echo '<a href="' . url_to('gestion_campagnes', $client['ID_CLIENT']) . '"<button class ="button">voir campagne </button></a>';
-    ?> -->
 </form>
 
 

@@ -10,6 +10,7 @@ class Client extends BaseController
     private $clientModel;
     private $campagneModel;
     private $questionModel;
+    private $userModel;
     private $db;
 
     public function __construct()
@@ -17,6 +18,7 @@ class Client extends BaseController
         $this->clientModel = model('Client');
         $this->campagneModel = model('Campagne');
         $this->questionModel = model('Question');
+        $this->userModel = model('UserModel');
         $this->db = db_connect();
     }
 
@@ -28,7 +30,8 @@ class Client extends BaseController
 
     public function ajout(): string
     {
-        return view('Client/creation');
+        $listeUser = $this->userModel->findAll();
+        return view('Client/creation', ['listeUser' => $listeUser]);
     }
 
     public function create(): RedirectResponse
@@ -41,7 +44,11 @@ class Client extends BaseController
     public function modif($idClient): string
     {
         $client_modif = $this->clientModel->find($idClient);
-        return view('Client/modif', ['client' => $client_modif]);
+        $listeUser = $this->userModel->findAll();
+        return view('Client/modif', [
+            'client' => $client_modif,
+            'listeUser' => $listeUser
+        ]);
     }
 
     public function update(): RedirectResponse

@@ -1,8 +1,7 @@
+<?php $this->setVar('titre', 'Création Question'); ?>
 <?= $this->extend('layout') ?>
 <?= $this->section('contenu') ?>
-<div class="titre-container">
-    <h1 class="titreMenu">Création Question</h1>
-</div>
+
 <form method="post" action="<?= url_to('creation_question_post') ?>">
     <label class="required" for="QUESTION">Question</label>
     <textarea class="textarea-question" id="QUESTION" name="QUESTION" required
