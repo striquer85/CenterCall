@@ -41,5 +41,7 @@
         <input type="text" id="VILLE" name="VILLE" placeholder="Ex: Paris" required>
     </div>
     <input class="submit-client" type="submit" value="Valider">
+
+    
 </form>
 <?= $this->endSection() ?>
