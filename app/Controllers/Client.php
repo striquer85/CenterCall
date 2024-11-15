@@ -47,7 +47,7 @@ class Client extends BaseController
     {
         $data = $this->request->getPost();
         $this->clientModel->insert($data);
-        return redirect()->to('gestion-clients');
+        return redirect()->to('/');
     }
 
     public function modif($idClient): string
@@ -64,7 +64,7 @@ class Client extends BaseController
     {
         $dataClient = $this->request->getPost();
         $this->clientModel->save($dataClient);
-        return redirect()->to('gestion-clients');
+        return redirect()->to('/');
     }
 
     public function delete($idClient): RedirectResponse
@@ -95,6 +95,6 @@ class Client extends BaseController
         if ($this->db->transStatus() === false) {
             throw new DatabaseException("Erreur lors de la suppression.");
         }
-        return redirect()->to('gestion-clients');
+        return redirect()->to('/');
     }
 }
