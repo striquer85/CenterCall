@@ -43,4 +43,12 @@ class Client extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function findClient($idUser)
+    {
+        return $this
+            ->select('ID_CLIENT')
+            ->where('ID_UTILISATEUR',$idUser)
+            ->first();
+    }
 }

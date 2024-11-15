@@ -74,4 +74,5 @@ class Campagne extends Model
             ->where('ID_CAMPAGNE', $idCampagne)
             ->update();
     }
+    
 }
