@@ -15,9 +15,18 @@ class Campagne extends BaseController
         $this->campagneModel = model('Campagne');
         $this->clientModel = model('Client');
     }
-    public function index(): string
+    public function index()
     {
-        return view('accueil');
+        $user = auth()->user();
+        if (! $user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+           
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
+        $client = $this->clientModel->findAll();
+        return view('Client/gestion_admin', ['listeClients' => $client]);
     }
     public function connexion(): string
     {
