@@ -23,9 +23,9 @@ class Client extends BaseController
         $this->db = db_connect();
     }
 
-    public function gestionclient(): string
-    {
 
+    public function ajout()
+    {
         $user = auth()->user();
         if (! $user->inGroup('admin')) {
             $user_id = auth()->id();
@@ -34,24 +34,35 @@ class Client extends BaseController
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
-        $client = $this->clientModel->findAll();
-        return view('Client/gestion_admin', ['listeClients' => $client]);
-    }
-    public function ajout(): string
-    {
         $listeUser = $this->userModel->findAll();
         return view('Client/creation', ['listeUser' => $listeUser]);
     }
 
     public function create(): RedirectResponse
     {
+        $user = auth()->user();
+        if (! $user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $data = $this->request->getPost();
         $this->clientModel->insert($data);
         return redirect()->to('/');
     }
 
-    public function modif($idClient): string
+    public function modif($idClient)
     {
+        $user = auth()->user();
+        if (! $user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $client_modif = $this->clientModel->find($idClient);
         $listeUser = $this->userModel->findAll();
         return view('Client/modif', [
@@ -62,6 +73,14 @@ class Client extends BaseController
 
     public function update(): RedirectResponse
     {
+        $user = auth()->user();
+        if (! $user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $dataClient = $this->request->getPost();
         $this->clientModel->save($dataClient);
         return redirect()->to('/');
@@ -69,6 +88,14 @@ class Client extends BaseController
 
     public function delete($idClient): RedirectResponse
     {
+        $user = auth()->user();
+        if (! $user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $this->db->transStart();
         $clientIdSup = $this->clientModel->find($idClient);
         $idUserSup = $clientIdSup['ID_UTILISATEUR'];
