@@ -35,6 +35,7 @@ class Campagne extends BaseController
     }
     public function dashboard($ID_CLIENT): string
     {
+        $user = auth()->user();
 
         // récupére tous les campagnes de la table avec "findAll()" 
 
@@ -43,7 +44,8 @@ class Campagne extends BaseController
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne,
-            'client' => $idClient
+            'client' => $idClient,
+            'admin' => $user && $user->inGroup('admin')
         ]);
     }
 

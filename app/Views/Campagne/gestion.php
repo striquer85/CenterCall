@@ -5,7 +5,12 @@
 <div class="button-container">
     <a class="button button-ajout" href="<?= url_to('creation_campagne_get', $client['ID_CLIENT']) ?>">Nouvelle
         Campagne</a>
+    <?php
+    if ($admin)
+        echo '<a class="button button-ajout" href="' . url_to('gestion_admin') . '">Terminer</a>';
+    ?>
 </div>
+
 <?php
 $table = new \CodeIgniter\View\Table();
 $table->setHeading(['Titre Campagne', 'Voir Campagne', 'Modifier']);

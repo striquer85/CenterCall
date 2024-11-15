@@ -15,7 +15,7 @@ class Client extends BaseController
 
     public function __construct()
     {
-        
+
         $this->clientModel = model('Client');
         $this->campagneModel = model('Campagne');
         $this->questionModel = model('Question');
@@ -31,7 +31,7 @@ class Client extends BaseController
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
-           
+
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
         $client = $this->clientModel->findAll();
@@ -74,10 +74,6 @@ class Client extends BaseController
         $idUserSup = $clientIdSup['ID_UTILISATEUR'];
 
         $this->userModel->delete($idUserSup);
-        // if ($this->$idUserSup['deleted_at'] == null) {
-        //     $this->userModel->delete($idUserSup);
-        // }
-
         $idCampagne = $this->campagneModel->get_campagnes_by_client($idClient);
         if ($idCampagne) {
             foreach ($idCampagne as $campagne) {

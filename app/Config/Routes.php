@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 service('auth')->routes($routes);
-$routes->get('/', 'Campagne::index', ['as' => 'accueil']);
+$routes->get('/', 'Campagne::index', ['as' => 'gestion_admin']);
 
 
 $routes->get('gestion-campagnes/(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
