@@ -24,10 +24,18 @@ class Client extends BaseController
 
     public function gestionclient(): string
     {
+
+        $user = auth()->user();
+        if (! $user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+           
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $client = $this->clientModel->findAll();
         return view('Client/gestion_admin', ['listeClients' => $client]);
     }
-
     public function ajout(): string
     {
         $listeUser = $this->userModel->findAll();
@@ -79,7 +87,7 @@ class Client extends BaseController
 
         $this->clientModel->delete($idClient);
 
-        
+
 
         $this->db->transComplete();
 
