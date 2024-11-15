@@ -16,7 +16,7 @@
 
 <body class="bg-light">
 
-    <main role="main" class="container">
+    <main role="main" class="content">
         <?= $this->renderSection('main') ?>
     </main>
 

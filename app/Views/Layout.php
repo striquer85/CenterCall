@@ -19,7 +19,7 @@
 <body>
     <div class="titre-container">
         <div class="card-body">
-            <h2 class="titre-menu"><?= isset($titre) ? $titre : 'CenterCall' ?></h2>
+            <h5 class="titre-menu"><?= isset($titre) ? $titre : 'CenterCall' ?></h5>
             <a class="button button-logout" href="<?= url_to('logout') ?>">Déconnexion</a>
         </div>
     </div>

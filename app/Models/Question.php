@@ -48,7 +48,7 @@ class Question extends Model
     {
         return $this
             ->select('QUESTION, ID_QUESTION, ID_CAMPAGNE')
-            ->where('ID_CAMPAGNE =', $idCampagne)
+            ->where('ID_CAMPAGNE', $idCampagne)
             ->findAll();
     }
 
