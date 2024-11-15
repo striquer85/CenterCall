@@ -23,7 +23,7 @@ class AuthGroups extends ShieldAuthGroups
      * --------------------------------------------------------------------
      * The group that a newly registered user is added to.
      */
-    public string $defaultGroup = 'client';
+    public string $defaultGroup = 'user';
 
     /**
      * --------------------------------------------------------------------
@@ -41,13 +41,25 @@ class AuthGroups extends ShieldAuthGroups
      * @see https://codeigniter4.github.io/shield/quick_start_guide/using_authorization/#change-available-groups for more info
      */
     public array $groups = [
+        'superadmin' => [
+            'title'       => 'Super Admin',
+            'description' => 'Complete control of the site.',
+        ],
         'admin' => [
             'title'       => 'Admin',
             'description' => 'Day to day administrators of the site.',
         ],
-        'client' => [
-            'title'       => 'Client',
+        'developer' => [
+            'title'       => 'Developer',
+            'description' => 'Site programmers.',
+        ],
+        'user' => [
+            'title'       => 'User',
             'description' => 'General users of the site. Often customers.',
+        ],
+        'beta' => [
+            'title'       => 'Beta User',
+            'description' => 'Has access to beta-level features.',
         ],
     ];
 

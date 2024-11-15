@@ -61,6 +61,13 @@ class Client extends BaseController
     public function delete($idClient): RedirectResponse
     {
         $this->db->transStart();
+        $clientIdSup = $this->clientModel->find($idClient);
+        $idUserSup = $clientIdSup['ID_UTILISATEUR'];
+
+        $this->userModel->delete($idUserSup);
+        // if ($this->$idUserSup['deleted_at'] == null) {
+        //     $this->userModel->delete($idUserSup);
+        // }
 
         $idCampagne = $this->campagneModel->get_campagnes_by_client($idClient);
         if ($idCampagne) {
@@ -71,6 +78,8 @@ class Client extends BaseController
         }
 
         $this->clientModel->delete($idClient);
+
+        
 
         $this->db->transComplete();
 
