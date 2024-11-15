@@ -18,6 +18,7 @@ class Campagne extends BaseController
     public function index()
     {
         $user = auth()->user();
+       
         if (! $user->inGroup('admin')) {
             $user_id = auth()->id();
 
