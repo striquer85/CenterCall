@@ -24,7 +24,7 @@ foreach ($listeClients as $client) {
         '<form class="form-suppression" action="' . url_to('suppr_client', $client['ID_CLIENT']) . '" method="post">
             <input type="hidden" name="ID_QUESTION" value="' . $client['ID_CLIENT'] . '">        
         <button type="submit" class="button button-supprimer" 
-        onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce client ainsi que toutes les campagnes et questions associées ?\');">Supprimer</button>        
+        onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce client et son compte ainsi que toutes les campagnes et questions associées ?\');">Supprimer</button>        
         </form>',
         '<a href="' . url_to('gestion_campagnes', $client['ID_CLIENT']) . '"><button class="button button-voir-campagne">Voir</button></a>'
     );

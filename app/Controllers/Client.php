@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class Client extends BaseController
@@ -23,11 +22,24 @@ class Client extends BaseController
         $this->db = db_connect();
     }
 
+    public function gestionclient()
+    {
+        $user = auth()->user();
 
+        if (!$user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
+        $client = $this->clientModel->findAll();
+        return view('Client/gestion_admin', ['listeClients' => $client]);
+    }
     public function ajout()
     {
         $user = auth()->user();
-        if (! $user->inGroup('admin')) {
+        if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
@@ -38,10 +50,10 @@ class Client extends BaseController
         return view('Client/creation', ['listeUser' => $listeUser]);
     }
 
-    public function create(): RedirectResponse
+    public function create()
     {
         $user = auth()->user();
-        if (! $user->inGroup('admin')) {
+        if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
@@ -50,13 +62,13 @@ class Client extends BaseController
         }
         $data = $this->request->getPost();
         $this->clientModel->insert($data);
-        return redirect()->to('/');
+        return redirect()->to('gestion-clients');
     }
 
     public function modif($idClient)
     {
         $user = auth()->user();
-        if (! $user->inGroup('admin')) {
+        if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
@@ -71,10 +83,10 @@ class Client extends BaseController
         ]);
     }
 
-    public function update(): RedirectResponse
+    public function update()
     {
         $user = auth()->user();
-        if (! $user->inGroup('admin')) {
+        if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
@@ -83,13 +95,13 @@ class Client extends BaseController
         }
         $dataClient = $this->request->getPost();
         $this->clientModel->save($dataClient);
-        return redirect()->to('/');
+        return redirect()->to('gestion-clients');
     }
 
-    public function delete($idClient): RedirectResponse
+    public function delete($idClient)
     {
         $user = auth()->user();
-        if (! $user->inGroup('admin')) {
+        if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
@@ -108,16 +120,12 @@ class Client extends BaseController
             }
             $this->campagneModel->delete_campagnes_by_client($idClient);
         }
-
         $this->clientModel->delete($idClient);
-
-
-
         $this->db->transComplete();
 
         if ($this->db->transStatus() === false) {
             throw new DatabaseException("Erreur lors de la suppression.");
         }
-        return redirect()->to('/');
+        return redirect()->to('gestion-clients');
     }
 }

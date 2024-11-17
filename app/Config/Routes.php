@@ -6,12 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 service('auth')->routes($routes);
-$routes->get('/', 'Campagne::index', ['as' => 'gestion_admin']);
-
-
-$routes->get('gestion-campagnes/(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
+$routes->get('/', 'Home::index', ['as' => 'index']);
 
 // CRUD Campagne
+$routes->get('gestion-campagnes/(:num)', 'Campagne::dashboard/$1', ['as' => 'gestion_campagnes']);
+
 $routes->get('creation-campagne/(:num)', 'Campagne::ajout/$1', ['as' => 'creation_campagne_get']);
 $routes->post('creation-campagne', 'Campagne::create', ['as' => 'creation_campagne_post']);
 
@@ -19,6 +18,7 @@ $routes->get('modif-campagne/(:num)', 'Campagne::modif/$1', ['as' => 'modif_camp
 $routes->post('modif-campagne', 'Campagne::update', ['as' => 'modif_campagne_post']);
 
 $routes->post('suppr-campagne', 'Campagne::delete', ['as' => 'suppr_campagne']);
+
 $routes->get('synthese', 'Campagne::synthese', ['as' => 'synthese']);
 
 // CRUD Question
@@ -33,7 +33,7 @@ $routes->post('modif-question', 'Question::update', ['as' => 'modif_question_pos
 $routes->post('suppr-question', 'Question::delete', ['as' => 'suppr_question']);
 
 // CRUD Client
-// $routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion_admin']);
+$routes->get('gestion-clients', 'Client::gestionclient', ['as' => 'gestion_admin']);
 
 $routes->get('creation-client', 'Client::ajout', ['as' => 'creation-client_get']);
 $routes->post('creation-client', 'Client::create', ['as' => 'creation-client_post']);

@@ -11,7 +11,9 @@
         <?php
         foreach ($listeUser as $user) {
             ?>
-            <option value="<?= $user->id ?>"><?= $user->username ?></option>
+            <option value="<?= $user->id ?>" <?= ($user->id == $client['ID_UTILISATEUR']) ? 'selected' : '' ?>>
+                <?= $user->username ?>
+            </option>
             <?php
         }
         ?>
