@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\HTTP\RedirectResponse;
-
 class Campagne extends BaseController
 {
 
@@ -15,35 +13,18 @@ class Campagne extends BaseController
         $this->campagneModel = model('Campagne');
         $this->clientModel = model('Client');
     }
-    public function index()
-    {
-        $user = auth()->user();
-       
-        if (! $user->inGroup('admin')) {
-            $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
-           
-            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
-        }
-        $client = $this->clientModel->findAll();
-        return view('Client/gestion_admin', ['listeClients' => $client]);
-    }
-    public function connexion(): string
-    {
-        return view('connexion');
-    }
     public function dashboard($ID_CLIENT): string
     {
-
-        // récupére tous les campagnes de la table avec "findAll()" 
+        $user = auth()->user();
 
         $campagne = $this->campagneModel->findIdClient($ID_CLIENT);
         $idClient = $this->clientModel->find($ID_CLIENT);
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne,
-            'client' => $idClient
+            'client' => $idClient,
+            'admin' => $user && $user->inGroup('admin')
         ]);
     }
 

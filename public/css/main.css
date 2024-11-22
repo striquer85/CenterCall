@@ -473,6 +473,7 @@ footer {
     margin-left: auto;
     margin-right: auto;
     word-wrap: break-word;
+    transition: transform 0.3s ease-in-out;
 }
 
 .alert-success {
@@ -487,6 +488,7 @@ footer {
     margin-left: auto;
     margin-right: auto;
     word-wrap: break-word;
+    transition: transform 0.3s ease-in-out;
 }
 
 .alert:hover {

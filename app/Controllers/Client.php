@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Database\Exceptions\DatabaseException;
 
 class Client extends BaseController
@@ -15,7 +14,7 @@ class Client extends BaseController
 
     public function __construct()
     {
-        
+
         $this->clientModel = model('Client');
         $this->campagneModel = model('Campagne');
         $this->questionModel = model('Question');
@@ -23,35 +22,59 @@ class Client extends BaseController
         $this->db = db_connect();
     }
 
-    public function gestionclient(): string
+    public function gestionclient()
     {
-
         $user = auth()->user();
-        if (! $user->inGroup('admin')) {
+
+        if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
-           
+
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
         $client = $this->clientModel->findAll();
         return view('Client/gestion_admin', ['listeClients' => $client]);
     }
-    public function ajout(): string
+    public function ajout()
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $listeUser = $this->userModel->findAll();
         return view('Client/creation', ['listeUser' => $listeUser]);
     }
 
-    public function create(): RedirectResponse
+    public function create()
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $data = $this->request->getPost();
         $this->clientModel->insert($data);
         return redirect()->to('gestion-clients');
     }
 
-    public function modif($idClient): string
+    public function modif($idClient)
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $client_modif = $this->clientModel->find($idClient);
         $listeUser = $this->userModel->findAll();
         return view('Client/modif', [
@@ -60,24 +83,36 @@ class Client extends BaseController
         ]);
     }
 
-    public function update(): RedirectResponse
+    public function update()
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $dataClient = $this->request->getPost();
         $this->clientModel->save($dataClient);
         return redirect()->to('gestion-clients');
     }
 
-    public function delete($idClient): RedirectResponse
+    public function delete($idClient)
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+            $user_id = auth()->id();
+
+            $idClient = $this->clientModel->findClient($user_id);
+
+            return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
+        }
         $this->db->transStart();
         $clientIdSup = $this->clientModel->find($idClient);
         $idUserSup = $clientIdSup['ID_UTILISATEUR'];
 
         $this->userModel->delete($idUserSup);
-        // if ($this->$idUserSup['deleted_at'] == null) {
-        //     $this->userModel->delete($idUserSup);
-        // }
-
         $idCampagne = $this->campagneModel->get_campagnes_by_client($idClient);
         if ($idCampagne) {
             foreach ($idCampagne as $campagne) {
@@ -85,11 +120,7 @@ class Client extends BaseController
             }
             $this->campagneModel->delete_campagnes_by_client($idClient);
         }
-
         $this->clientModel->delete($idClient);
-
-
-
         $this->db->transComplete();
 
         if ($this->db->transStatus() === false) {
