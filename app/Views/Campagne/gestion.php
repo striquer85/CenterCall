@@ -7,7 +7,7 @@
         Campagne</a>
     <?php
     if ($admin)
-        echo '<a class="button button-ajout" href="' . url_to('gestion_admin') . '">Terminer</a>';
+        echo '<a class="button button-ajout" href="' . url_to('gestion_admin') . '"> retoure au gestion admin</a>';
     ?>
 </div>
 
