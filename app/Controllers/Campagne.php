@@ -18,15 +18,14 @@ class Campagne extends BaseController
     {
         $user = auth()->user();
 
-        $idUser = auth()->id();
+        if (!$user->inGroup('admin')) {
+            $idUser = auth()->id();
+            $idClientUser = $this->clientModel->findClient($idUser);
 
-        $idClientUser = $this->clientModel->findClient($idUser);
-
-
-        if (!($idClientUser['ID_CLIENT'] == $idClient)) {
-            return redirect()->to("gestion-campagnes/{$idClientUser['ID_CLIENT']}");
+            if (!($idClientUser['ID_CLIENT'] == $idClient)) {
+                return redirect()->to("gestion-campagnes/{$idClientUser['ID_CLIENT']}");
+            }
         }
-
         $campagne = $this->campagneModel->findIdClient($idClient);
 
         $idClient = $this->clientModel->find($idClient);
@@ -40,17 +39,19 @@ class Campagne extends BaseController
 
     public function ajout($idClient)
     {
-        $idUser = auth()->id();
+        $user = auth()->user();
 
-        $idClientUser = $this->clientModel->findClient($idUser);
+        if (!$user->inGroup('admin')) {
+            $idUser = auth()->id();
+            $idClientUser = $this->clientModel->findClient($idUser);
 
-        if (!($idClientUser['ID_CLIENT'] == $idClient)) {
-            return redirect()->to("creation-campagne/{$idClientUser['ID_CLIENT']}");
+            if (!($idClientUser['ID_CLIENT'] == $idClient)) {
+                return redirect()->to("creation-campagne/{$idClientUser['ID_CLIENT']}");
+            }
         }
         $idClient = $this->clientModel->find($idClient);
         return view('Campagne/creation', ['idClient' => $idClient]);
     }
-
     public function create()
     {
         $data = $this->request->getPost();
@@ -78,15 +79,19 @@ class Campagne extends BaseController
 
     public function modif($idCampagne)
     {
-        $idUser = auth()->id();
-        $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
 
-        $clientByUser = $this->clientModel->findClient($idUser);
+            $idUser = auth()->id();
+            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
 
-        if (!($clientByUser['ID_CLIENT'] == $idClient['ID_CLIENT'])) {
-            $campagne = $this->campagneModel->get_campagnes_by_client($clientByUser['ID_CLIENT']);
+            $clientByUser = $this->clientModel->findClient($idUser);
 
-            return redirect()->to("modif-campagne/{$campagne[0]['ID_CAMPAGNE']}");
+            if (!($clientByUser['ID_CLIENT'] == $idClient['ID_CLIENT'])) {
+                $campagne = $this->campagneModel->get_campagnes_by_client($clientByUser['ID_CLIENT']);
+
+                return redirect()->to("modif-campagne/{$campagne[0]['ID_CAMPAGNE']}");
+            }
         }
         $campagne = $this->campagneModel->find($idCampagne);
 
