@@ -48,7 +48,7 @@ class Client extends Model
     {
         return $this
             ->select('ID_CLIENT')
-            ->where('ID_UTILISATEUR',$idUser)
+            ->where('ID_UTILISATEUR', $idUser)
             ->first();
     }
 }

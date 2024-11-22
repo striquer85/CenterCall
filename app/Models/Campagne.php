@@ -74,5 +74,11 @@ class Campagne extends Model
             ->where('ID_CAMPAGNE', $idCampagne)
             ->update();
     }
-    
+    public function findIdCampagneClient($idCampagne)
+    {
+        return $this
+            ->select('ID_CLIENT')
+            ->where('ID_CAMPAGNE', $idCampagne)
+            ->first();
+    }
 }

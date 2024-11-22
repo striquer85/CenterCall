@@ -14,12 +14,22 @@ class Campagne extends BaseController
         $this->clientModel = model('Client');
     }
 
-    public function dashboard($ID_CLIENT): string
+    public function dashboard($idClient)
     {
         $user = auth()->user();
 
-        $campagne = $this->campagneModel->findIdClient($ID_CLIENT);
-        $idClient = $this->clientModel->find($ID_CLIENT);
+        $idUser = auth()->id();
+
+        $idClientUser = $this->clientModel->findClient($idUser);
+
+
+        if (!($idClientUser['ID_CLIENT'] == $idClient)) {
+            return redirect()->to("gestion-campagnes/{$idClientUser['ID_CLIENT']}");
+        }
+
+        $campagne = $this->campagneModel->findIdClient($idClient);
+
+        $idClient = $this->clientModel->find($idClient);
 
         return view('Campagne/gestion', [
             'listeCampagnes' => $campagne,
@@ -28,9 +38,16 @@ class Campagne extends BaseController
         ]);
     }
 
-    public function ajout($ID_CLIENT): string
+    public function ajout($idClient)
     {
-        $idClient = $this->clientModel->find($ID_CLIENT);
+        $idUser = auth()->id();
+
+        $idClientUser = $this->clientModel->findClient($idUser);
+
+        if (!($idClientUser['ID_CLIENT'] == $idClient)) {
+            return redirect()->to("creation-campagne/{$idClientUser['ID_CLIENT']}");
+        }
+        $idClient = $this->clientModel->find($idClient);
         return view('Campagne/creation', ['idClient' => $idClient]);
     }
 
@@ -59,16 +76,26 @@ class Campagne extends BaseController
     }
 
 
-    public function modif($ID_CAMPAGNE): string
+    public function modif($idCampagne)
     {
-        $campagne = $this->campagneModel->find($ID_CAMPAGNE);
+        $idUser = auth()->id();
+        $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+
+        $clientByUser = $this->clientModel->findClient($idUser);
+
+        if (!($clientByUser['ID_CLIENT'] == $idClient['ID_CLIENT'])) {
+            $campagne = $this->campagneModel->get_campagnes_by_client($clientByUser['ID_CLIENT']);
+
+            return redirect()->to("modif-campagne/{$campagne[0]['ID_CAMPAGNE']}");
+        }
+        $campagne = $this->campagneModel->find($idCampagne);
 
         return view('Campagne/modif', ['campagne' => $campagne]);
     }
 
     public function update()
     {
-        $idCampagne = $this->request->getPost('ID_CAMPAGNE');
+        $idCampagne = $this->request->getPost('idCampagne');
         $data = $this->request->getPost();
 
         $this->campagneModel->save($data);

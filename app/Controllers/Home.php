@@ -18,6 +18,7 @@ class Home extends BaseController
             $user_id = auth()->id();
 
             $idClient = $this->clientModel->findClient($user_id);
+
             if ($idClient == null) {
                 session()->setFlashdata('errors', 'Vous n\'avez pas encore de client attribué. Attendez que un administrateur vous le crée.');
                 auth()->logout();
