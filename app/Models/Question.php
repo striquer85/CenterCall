@@ -44,21 +44,23 @@ class Question extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
-    public function findIdCampagne($idCampagne)
+    // Récupère toutes les questions associées à une campagne spécifique
+    public function findQuestionsByCampagneId($idCampagne)
     {
         return $this
             ->select('QUESTION, ID_QUESTION, ID_CAMPAGNE')
             ->where('ID_CAMPAGNE', $idCampagne)
             ->findAll();
     }
-
-    public function delete_questions_by_campagnes($idCampagne)
+    // Supprime toutes les questions associées à une campagne spécifique
+    public function deleteQuestionsByCampagneId($idCampagne)
     {
         return $this
             ->where('ID_CAMPAGNE', $idCampagne)
             ->delete();
     }
-    public function findIdQuestion($idQuestion)
+    // Trouve l'ID de la campagne associée à une question spécifique
+    public function findCampagneIdByQuestionId($idQuestion)
     {
         return $this
             ->select('ID_CAMPAGNE')

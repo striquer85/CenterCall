@@ -29,7 +29,7 @@ class Client extends BaseController
         if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
+            $idClient = $this->clientModel->findClientIdByUserId($user_id);
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
@@ -42,7 +42,7 @@ class Client extends BaseController
         if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
+            $idClient = $this->clientModel->findClientIdByUserId($user_id);
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
@@ -56,7 +56,7 @@ class Client extends BaseController
         if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
+            $idClient = $this->clientModel->findClientIdByUserId($user_id);
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
@@ -71,7 +71,7 @@ class Client extends BaseController
         if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
+            $idClient = $this->clientModel->findClientIdByUserId($user_id);
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
@@ -89,7 +89,7 @@ class Client extends BaseController
         if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
+            $idClient = $this->clientModel->findClientIdByUserId($user_id);
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
@@ -104,7 +104,7 @@ class Client extends BaseController
         if (!$user->inGroup('admin')) {
             $user_id = auth()->id();
 
-            $idClient = $this->clientModel->findClient($user_id);
+            $idClient = $this->clientModel->findClientIdByUserId($user_id);
 
             return redirect()->to("gestion-campagnes/{$idClient['ID_CLIENT']}");
         }
@@ -113,12 +113,12 @@ class Client extends BaseController
         $idUserSup = $clientIdSup['ID_UTILISATEUR'];
 
         $this->userModel->delete($idUserSup);
-        $idCampagne = $this->campagneModel->get_campagnes_by_client($idClient);
+        $idCampagne = $this->campagneModel->findCampagnesByClientId($idClient);
         if ($idCampagne) {
             foreach ($idCampagne as $campagne) {
-                $this->questionModel->delete_questions_by_campagnes($campagne['ID_CAMPAGNE']);
+                $this->questionModel->deleteQuestionsByCampagneId($campagne['ID_CAMPAGNE']);
             }
-            $this->campagneModel->delete_campagnes_by_client($idClient);
+            $this->campagneModel->deleteByClientId($idClient);
         }
         $this->clientModel->delete($idClient);
         $this->db->transComplete();

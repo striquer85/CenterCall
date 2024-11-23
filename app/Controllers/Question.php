@@ -22,16 +22,16 @@ class Question extends BaseController
         if (!$user->inGroup('admin')) {
 
             $idUser = auth()->id();
-            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+            $idClient = $this->campagneModel->findClientIdByCampagneId($idCampagne);
 
-            $clientByUser = $this->clientModel->findClient($idUser);
+            $clientByUser = $this->clientModel->findClientIdByUserId($idUser);
 
 
-            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient['ID_CLIENT']) {
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient[0]['ID_CLIENT']) {
                 return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
             }
         }
-        $questions = $this->questionModel->findIdCampagne($idCampagne);
+        $questions = $this->questionModel->findQuestionsByCampagneId($idCampagne);
         $idCampagne = $this->campagneModel->find($idCampagne);
 
         return view(
@@ -48,12 +48,12 @@ class Question extends BaseController
         if (!$user->inGroup('admin')) {
 
             $idUser = auth()->id();
-            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+            $idClient = $this->campagneModel->findClientIdByCampagneId($idCampagne);
 
-            $clientByUser = $this->clientModel->findClient($idUser);
+            $clientByUser = $this->clientModel->findClientIdByUserId($idUser);
 
 
-            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient['ID_CLIENT']) {
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient[0]['ID_CLIENT']) {
                 return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
             }
         }
@@ -78,11 +78,11 @@ class Question extends BaseController
         if (!$user->inGroup('admin')) {
 
             $idUser = auth()->id();
-            $idCampagne = $this->questionModel->findIdQuestion($idQuestion);
+            $idCampagne = $this->questionModel->findCampagneIdByQuestionId($idQuestion);
 
-            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+            $idClient = $this->campagneModel->findClientIdByCampagneId($idCampagne);
 
-            $clientByUser = $this->clientModel->findClient($idUser);
+            $clientByUser = $this->clientModel->findClientIdByUserId($idUser);
 
             if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient[0]['ID_CLIENT']) {
                 return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");

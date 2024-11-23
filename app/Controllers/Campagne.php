@@ -20,13 +20,13 @@ class Campagne extends BaseController
 
         if (!$user->inGroup('admin')) {
             $idUser = auth()->id();
-            $idClientUser = $this->clientModel->findClient($idUser);
+            $idClientUser = $this->clientModel->findClientIdByUserId($idUser);
 
             if (!($idClientUser['ID_CLIENT'] == $idClient)) {
                 return redirect()->to("gestion-campagnes/{$idClientUser['ID_CLIENT']}");
             }
         }
-        $campagne = $this->campagneModel->findIdClient($idClient);
+        $campagne = $this->campagneModel->findCampagnesDetailsByClientId($idClient);
 
         $idClient = $this->clientModel->find($idClient);
 
@@ -43,7 +43,7 @@ class Campagne extends BaseController
 
         if (!$user->inGroup('admin')) {
             $idUser = auth()->id();
-            $idClientUser = $this->clientModel->findClient($idUser);
+            $idClientUser = $this->clientModel->findClientIdByUserId($idUser);
 
             if (!($idClientUser['ID_CLIENT'] == $idClient)) {
                 return redirect()->to("creation-campagne/{$idClientUser['ID_CLIENT']}");
@@ -71,7 +71,7 @@ class Campagne extends BaseController
         }
 
         $emailListe = implode(';', $lignes);
-        $this->campagneModel->insertContacts($idCampagne, $emailListe);
+        $this->campagneModel->insertContactsByCampagnesId($idCampagne, $emailListe);
 
         return redirect()->to("creation-question/$idCampagne");
     }
@@ -83,11 +83,11 @@ class Campagne extends BaseController
         if (!$user->inGroup('admin')) {
 
             $idUser = auth()->id();
-            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+            $idClient = $this->campagneModel->findClientIdByCampagneId($idCampagne);
 
-            $clientByUser = $this->clientModel->findClient($idUser);
-
-            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient['ID_CLIENT']) {
+            $clientByUser = $this->clientModel->findClientIdByUserId($idUser);
+          
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient[0]['ID_CLIENT']) {
                 return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
             }
         }
@@ -116,7 +116,7 @@ class Campagne extends BaseController
 
         if (!empty($lignes)) {
             $emailListe = implode(';', $lignes);
-            $this->campagneModel->insertContacts($idCampagne, $emailListe);
+            $this->campagneModel->insertContactsByCampagnesId($idCampagne, $emailListe);
         }
         return redirect()->to("gestion-question/$idCampagne");
     }

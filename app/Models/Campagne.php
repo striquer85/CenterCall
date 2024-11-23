@@ -44,41 +44,47 @@ class Campagne extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
-    public function delete_campagnes_by_client($idClient)
+    // Supprime toutes les campagnes associées à un client spécifique
+    public function deleteByClientId($idClient)
     {
         return $this
             ->where('ID_CLIENT', $idClient)
             ->delete();
     }
-
-    public function get_campagnes_by_client($idClient)
+    // Récupère toutes les campagnes d'un client spécifique
+    // Retourne une liste contenant les IDs des campagnes
+    public function findCampagnesByClientId($idClient)
     {
         return $this
             ->select('ID_CAMPAGNE')
             ->where('ID_CLIENT', $idClient)
             ->findAll();
     }
-
-    public function findIDClient($idClient)
+    // Récupère les informations des campagnes associées à un client spécifique
+    //ID_CLIENT, TITRE, et ID_CAMPAGNE
+    public function findCampagnesDetailsByClientId($idClient)
     {
         return $this
             ->select('ID_CLIENT, TITRE, ID_CAMPAGNE')
             ->where('ID_CLIENT', $idClient)
             ->findAll();
     }
-
-    public function insertContacts($idCampagne, $emailListe)
+    // Insert la liste des contacts d'une campagne donnée
+    // $idCampagne : ID de la campagne à l'insert
+    // $emailListe : Liste des emails à insérer
+    public function insertContactsByCampagnesId($idCampagne, $emailListe)
     {
         return $this
             ->set('CONTACTS', $emailListe)
             ->where('ID_CAMPAGNE', $idCampagne)
             ->update();
     }
-    public function findIdCampagneClient($idCampagne)
+    // Récupère l'ID du client associé à une campagne spécifique
+    public function findClientIdByCampagneId($idCampagne)
     {
         return $this
             ->select('ID_CLIENT')
             ->where('ID_CAMPAGNE', $idCampagne)
-            ->find($idCampagne);
+            ->findAll();
     }
 }
