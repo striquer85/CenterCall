@@ -58,4 +58,11 @@ class Question extends Model
             ->where('ID_CAMPAGNE', $idCampagne)
             ->delete();
     }
+    public function findIdQuestion($idQuestion)
+    {
+        return $this
+            ->select('ID_CAMPAGNE')
+            ->where('ID_QUESTION', $idQuestion)
+            ->find($idQuestion);
+    }
 }

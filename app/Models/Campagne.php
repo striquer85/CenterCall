@@ -79,6 +79,6 @@ class Campagne extends Model
         return $this
             ->select('ID_CLIENT')
             ->where('ID_CAMPAGNE', $idCampagne)
-            ->first();
+            ->find($idCampagne);
     }
 }

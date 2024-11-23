@@ -10,7 +10,8 @@
 <div class="button-container">
     <a class="button button-ajout" href="<?= url_to('creation_question_get', $campagne['ID_CAMPAGNE']) ?>">Nouvelle
         question</a>
-    <a class="button button-ajout" href="<?= url_to('gestion_campagnes', $campagne['ID_CLIENT']) ?>">retour au gestion Campagne</a>
+    <a class="button button-ajout" href="<?= url_to('gestion_campagnes', $campagne['ID_CLIENT']) ?>">Retour Gestion
+        Campagnes</a>
 </div>
 
 

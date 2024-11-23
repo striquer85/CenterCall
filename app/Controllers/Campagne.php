@@ -87,10 +87,8 @@ class Campagne extends BaseController
 
             $clientByUser = $this->clientModel->findClient($idUser);
 
-            if (!($clientByUser['ID_CLIENT'] == $idClient['ID_CLIENT'])) {
-                $campagne = $this->campagneModel->get_campagnes_by_client($clientByUser['ID_CLIENT']);
-
-                return redirect()->to("modif-campagne/{$campagne[0]['ID_CAMPAGNE']}");
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient['ID_CLIENT']) {
+                return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
             }
         }
         $campagne = $this->campagneModel->find($idCampagne);
@@ -100,7 +98,7 @@ class Campagne extends BaseController
 
     public function update()
     {
-        $idCampagne = $this->request->getPost('idCampagne');
+        $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $data = $this->request->getPost();
 
         $this->campagneModel->save($data);

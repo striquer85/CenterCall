@@ -6,15 +6,31 @@ class Question extends BaseController
 {
     private $questionModel;
     private $campagneModel;
+    private $clientModel;
 
     public function __construct()
     {
         $this->questionModel = model('Question');
         $this->campagneModel = model('Campagne');
+        $this->clientModel = model('Client');
+
     }
 
-    public function gestionQuestion($idCampagne): string
+    public function gestionQuestion($idCampagne)
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+
+            $idUser = auth()->id();
+            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+
+            $clientByUser = $this->clientModel->findClient($idUser);
+
+
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient['ID_CLIENT']) {
+                return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
+            }
+        }
         $questions = $this->questionModel->findIdCampagne($idCampagne);
         $idCampagne = $this->campagneModel->find($idCampagne);
 
@@ -26,8 +42,21 @@ class Question extends BaseController
             ]
         );
     }
-    public function ajout($idCampagne): string
+    public function ajout($idCampagne)
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+
+            $idUser = auth()->id();
+            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+
+            $clientByUser = $this->clientModel->findClient($idUser);
+
+
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient['ID_CLIENT']) {
+                return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
+            }
+        }
         $idCampagne = $this->campagneModel->find($idCampagne);
         return view(
             'Question/creation',
@@ -43,8 +72,22 @@ class Question extends BaseController
         $this->questionModel->insert($question);
         return redirect()->to("creation-question/$idCampagne");
     }
-    public function modif($idQuestion): string
+    public function modif($idQuestion)
     {
+        $user = auth()->user();
+        if (!$user->inGroup('admin')) {
+
+            $idUser = auth()->id();
+            $idCampagne = $this->questionModel->findIdQuestion($idQuestion);
+
+            $idClient = $this->campagneModel->findIdCampagneClient($idCampagne);
+
+            $clientByUser = $this->clientModel->findClient($idUser);
+
+            if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient[0]['ID_CLIENT']) {
+                return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
+            }
+        }
         $idQuestion = $this->questionModel->find($idQuestion);
         return view(
             'Question/modif',
