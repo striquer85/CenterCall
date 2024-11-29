@@ -13,7 +13,7 @@ class Client extends BaseController
     private $db;
 
     /* ------------------------ creation du constructeur ------------------------ */
-    /*                       implementtation des model et db                      */
+    /*implementtation des model et db                                             */
     /* -------------------------------------------------------------------------- */
 
 
@@ -27,8 +27,8 @@ class Client extends BaseController
         $this->db = db_connect();
     }
     /* ------------------------ gestion des clients ------------------------ */
-    /* affichage des clients avec leur information et leur entreprise         */
-    /* -------------------------------------------------------------------------- */
+    /* affichage des clients avec leur information et leur entreprise        */
+    /* ----------------------------------------------------------------------*/
     public function gestionclient()
     {
 
@@ -93,7 +93,7 @@ class Client extends BaseController
         return redirect()->to('gestion-clients');
     }
     /* ------------------------- modification de client ------------------------- */
-    /* affichage de la page de modification d'un client                          */
+    /* affichage de la page de modification d'un client                           */
     /* affichage de la liste des utilisateurs                                     */
     /* recuprerations des clients et des utilisateurs                             */
     /* -------------------------------------------------------------------------- */
