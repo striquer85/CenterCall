@@ -34,7 +34,7 @@ class Client extends BaseController
 
         /* ------------------------ test de la methode admin ------------------------ */
         /*test si utilisateur est admin                                               */
-        /*si il est admin il va aller vers le dashboard                               */
+        /*si il est admin il va aller vers le dashboard gestion clients               */
         /*sinon il va aller vers la gestion des clients                               */
         /*si il est connecte mais pas admin il va aller                               */
         /*vers le dashboard des campagne associé au client                            */
