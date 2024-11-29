@@ -13,11 +13,11 @@ class Question extends BaseController
         $this->questionModel = model('Question');
         $this->campagneModel = model('Campagne');
         $this->clientModel = model('Client');
-
     }
 
     public function gestionQuestion($idCampagne)
     {
+        //Test pour voir si le compte est admin aucun traitement
         $user = auth()->user();
         if (!$user->inGroup('admin')) {
 
@@ -26,18 +26,21 @@ class Question extends BaseController
 
             $clientByUser = $this->clientModel->findClientIdByUserId($idUser);
 
-
+            //Test pour voir si le compte tente d'acceder a d'autre page que les siens
+            //Renvoie vers leur gestion campagne
             if ($idClient == null || $clientByUser['ID_CLIENT'] != $idClient[0]['ID_CLIENT']) {
                 return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
             }
         }
+        //Trouve les questions par rapport a une Campagne
         $questions = $this->questionModel->findQuestionsByCampagneId($idCampagne);
-        $idCampagne = $this->campagneModel->find($idCampagne);
+        //Trouve les information comme titre,date et libelle de la campagne
+        $campagne = $this->campagneModel->find($idCampagne);
 
         return view(
             'Question/gestion',
             [
-                'campagne' => $idCampagne,
+                'campagne' => $campagne,
                 'questions' => $questions
             ]
         );
@@ -67,6 +70,7 @@ class Question extends BaseController
     }
     public function create()
     {
+        //Insertion des donnés en base et redirection
         $question = $this->request->getPost();
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $this->questionModel->insert($question);
@@ -88,6 +92,7 @@ class Question extends BaseController
                 return redirect()->to("gestion-campagnes/{$clientByUser['ID_CLIENT']}");
             }
         }
+        //trouve la question grace a son id
         $idQuestion = $this->questionModel->find($idQuestion);
         return view(
             'Question/modif',
@@ -98,6 +103,7 @@ class Question extends BaseController
     }
     public function update()
     {
+        //Update des donnés en base et redirection
         $question = $this->request->getPost();
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $this->questionModel->save($question);
@@ -107,6 +113,7 @@ class Question extends BaseController
 
     public function delete()
     {
+        //delete des donnés en base et redirection
         $idQuestion = $this->request->getPost('ID_QUESTION');
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
 
