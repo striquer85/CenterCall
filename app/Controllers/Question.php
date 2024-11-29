@@ -103,7 +103,7 @@ class Question extends BaseController
     }
     public function update()
     {
-        //Insertion des donnés en base et redirection
+        //Update des donnés en base et redirection
         $question = $this->request->getPost();
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $this->questionModel->save($question);

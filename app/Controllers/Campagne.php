@@ -22,8 +22,8 @@ class Campagne extends BaseController
             $idUser = auth()->id();
             $idClientUser = $this->clientModel->findClientIdByUserId($idUser);
 
-            //Test pour voir si le compte tente d'acceder a d'autre page que les siens
-            //Renvoie vers leur gestion campagne
+            //Test pour voir si le compte tente d'acceder a d'autre page que les siens (sécurité du site)
+            //Renvoie vers leur gestion campagne 
             if (!($idClientUser['ID_CLIENT'] == $idClient)) {
                 return redirect()->to("gestion-campagnes/{$idClientUser['ID_CLIENT']}");
             }
@@ -104,7 +104,7 @@ class Campagne extends BaseController
 
     public function update()
     {
-        //insert les donné de la campagne en base
+        //update les donné de la campagne en base
         $idCampagne = $this->request->getPost('ID_CAMPAGNE');
         $data = $this->request->getPost();
 
