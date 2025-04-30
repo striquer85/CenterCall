@@ -28,7 +28,7 @@
     </div>
     <footer>
         <div class="footer-content">
-            <p>&copy; <?= date('Y') ?> CenterCall V2. Tous droits réservés.</p>
+            <p>&copy; <?= date('Y') ?> CenterCall. Tous droits réservés.</p>
         </div>
     </footer>
 </body>
