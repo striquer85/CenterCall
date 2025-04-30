@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Modification Question'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 <form method="post" action="<?= url_to('modif_question_post') ?>">

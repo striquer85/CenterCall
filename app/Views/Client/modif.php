@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Modification Client'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 

@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Synthése'); ?>
-<?= $this->extend('layout')?>
+<?= $this->extend('Layout')?>
 <?= $this->section('contenu')?>
 
 

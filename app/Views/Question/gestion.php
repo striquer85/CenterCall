@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Gestion Questions'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 <div class="campagne-info">

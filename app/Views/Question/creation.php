@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Création Question'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 <form method="post" action="<?= url_to('creation_question_post') ?>">
