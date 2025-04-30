@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Création de Campagne'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 <form method="post" action="<?= url_to('creation_campagne_post') ?>" enctype="multipart/form-data">

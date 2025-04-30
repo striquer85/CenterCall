@@ -1,5 +1,5 @@
 
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 <?php $this->setVar('titre', 'Gestion Clients'); ?>
 <div class="button-container">

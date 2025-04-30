@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Création Client'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 <form method="post" action="<?= url_to('creation-client_post') ?>" class="form-container">

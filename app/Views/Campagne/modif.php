@@ -1,5 +1,5 @@
 <?php $this->setVar('titre', 'Modification Campagne'); ?>
-<?= $this->extend('layout') ?>
+<?= $this->extend('Layout') ?>
 <?= $this->section('contenu') ?>
 
 <form method="post" action="<?= url_to('modif_campagne_post') ?>" enctype="multipart/form-data">
