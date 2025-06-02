@@ -7,12 +7,12 @@
 </div>
 <?php
 $table = new \CodeIgniter\View\Table();
-$table->setHeading('Raison Sociale', 'Nom', 'Prénom', 'Email', 'Téléphone', 'Adresse', 'Code Postal', 'Ville', 'Modifier', 'Supprimer', 'Voir Campagne');
+$table->setHeading('Raison SocialeSSS', 'Nom', 'Prénom', 'Email', 'Téléphone', 'Adresse', 'Code Postal', 'Ville', 'Modifier', 'Supprimer', 'Voir Campagne');
 
 foreach ($listeClients as $client) {
 
     $table->addRow(
-        $client['RAISON_SOCIALES'],
+        $client['RAISON_SOCIALE'],
         $client['NOM'],
         $client['PRENOM'],
         $client['EMAIL'],
