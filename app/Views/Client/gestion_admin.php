@@ -12,7 +12,7 @@ $table->setHeading('Raison Sociale', 'Nom', 'Prénom', 'Email', 'Téléphone', '
 foreach ($listeClients as $client) {
 
     $table->addRow(
-        $client['RAISON_SOCIALESsss'],
+        $client['RAISON_SOCIALES'],
         $client['NOM'],
         $client['PRENOM'],
         $client['EMAIL'],
