@@ -20,7 +20,7 @@ foreach ($listeCampagnes as $campagne) {
     $table->addRow(
         $campagne['TITRE'],
         '<a><button class="button button-voir-campagne">Voir</button></a>',
-        $campagne['nbQuestions'], // Affichage du nombre de questions
+        $campagne['nbQuestions'], // Affichage du nombre de questions pour chaque campagne
         '<a href="' . url_to('modif_campagne_get', $campagne['ID_CAMPAGNE']) . '"><button class="button button-modifier">Modifier</button></a>'
     );
 }

@@ -87,6 +87,12 @@ class Campagne extends Model
             ->where('ID_CAMPAGNE', $idCampagne)
             ->findAll();
     }
+
+    // Compte le nombre de questions associées à une campagne spécifique
+    // $idCampagne : ID de la campagne pour laquelle on compte les questions
+    // Retourne le nombre de questions
+    // @param int $idCampagne
+    // @return int
     public function countQuestions($idCampagne)
     {
         $result = $this
