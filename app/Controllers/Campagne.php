@@ -31,6 +31,10 @@ class Campagne extends BaseController
         //Renvoie les information de la campagne Titre,id...
         $campagne = $this->campagneModel->findCampagnesDetailsByClientId($idClient);
 
+        foreach ($campagne as &$c) {
+            $c['nbQuestions'] = $this->campagneModel->countQuestions($c['ID_CAMPAGNE']);
+        }
+
         $idClient = $this->clientModel->find($idClient);
 
         return view('Campagne/gestion', [

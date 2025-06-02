@@ -87,4 +87,14 @@ class Campagne extends Model
             ->where('ID_CAMPAGNE', $idCampagne)
             ->findAll();
     }
+    public function countQuestions($idCampagne)
+    {
+        $result = $this
+            ->select('COUNT(question.ID_QUESTION) AS nb_questions')
+            ->join('question', 'question.ID_CAMPAGNE = campagne.ID_CAMPAGNE')
+            ->where('campagne.ID_CAMPAGNE', $idCampagne)
+            ->first(); // exécute la requête
+    
+        return isset($result['nb_questions']) ? (int) $result['nb_questions'] : 0;
+    }
 }

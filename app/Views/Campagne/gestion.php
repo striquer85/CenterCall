@@ -13,13 +13,14 @@
 
 <?php
 $table = new \CodeIgniter\View\Table();
-$table->setHeading(['Titre Campagne', 'Voir Campagne', 'Modifier']);
+$table->setHeading(['Titre Campagne', 'Voir Campagne','nb question', 'Modifier']);
 
 foreach ($listeCampagnes as $campagne) {
 
     $table->addRow(
         $campagne['TITRE'],
         '<a><button class="button button-voir-campagne">Voir</button></a>',
+        $campagne['nbQuestions'], // Affichage du nombre de questions
         '<a href="' . url_to('modif_campagne_get', $campagne['ID_CAMPAGNE']) . '"><button class="button button-modifier">Modifier</button></a>'
     );
 }
